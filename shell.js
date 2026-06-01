@@ -1,4 +1,4 @@
-/* KoyaPay shared shell — renders sidebar + topbar from data attrs */
+/* WouraPay shared shell — renders sidebar + topbar from data attrs */
 (function () {
   const I = {
     // Lucide outline, stroke 1.5
@@ -23,6 +23,13 @@
     notif:       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>',
     chevronDown: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>',
     chevronRight:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>',
+    refund:      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>',
+    scale:       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>',
+    shieldCheck: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>',
+    webhook:     '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2"/><path d="m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06"/><path d="m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8"/></svg>',
+    reconcile:   '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M11 18H8a2 2 0 0 1-2-2V9"/></svg>',
+    percent:     '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>',
+    contact:     '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18a4 4 0 0 0-8 0"/><circle cx="12" cy="11" r="3"/><rect x="3" y="4" width="18" height="16" rx="2"/></svg>',
   };
   window.KP_ICONS = I;
 
@@ -31,13 +38,21 @@
     { type: 'section', label: 'Opérations' },
     { type: 'item', id: 'transactions', label: 'Transactions', icon: 'chart', href: 'admin-transactions.html' },
     { type: 'item', id: 'reversements', label: 'Reversements', icon: 'bank', href: 'admin-reversements.html', badge: '12' },
+    { type: 'item', id: 'remboursements', label: 'Remboursements', icon: 'refund', href: 'admin-remboursements.html' },
+    { type: 'item', id: 'litiges', label: 'Litiges', icon: 'scale', href: 'admin-litiges.html', badge: '3' },
     { type: 'item', id: 'wallets', label: 'Wallets', icon: 'wallet', href: 'admin-wallets.html' },
-    { type: 'section', label: 'Gestion' },
+    { type: 'section', label: 'Marchands' },
     { type: 'item', id: 'marchands', label: 'Marchands', icon: 'users', href: 'admin-marchands.html' },
+    { type: 'item', id: 'kyc', label: 'Vérifications KYC', icon: 'shieldCheck', href: 'admin-kyc.html', badge: '8' },
+    { type: 'section', label: 'Réseaux' },
     { type: 'item', id: 'reseaux', label: 'Pays & Réseaux', icon: 'globe', href: 'admin-reseaux.html' },
     { type: 'item', id: 'agregateurs', label: 'Agrégateurs', icon: 'plug', href: 'admin-agregateurs.html' },
+    { type: 'item', id: 'webhooks', label: 'Webhooks', icon: 'webhook', href: 'admin-webhooks.html' },
     { type: 'section', label: 'Finance' },
     { type: 'item', id: 'revenus', label: 'Revenus', icon: 'trend', href: 'admin-revenus.html' },
+    { type: 'item', id: 'reconciliation', label: 'Réconciliation', icon: 'reconcile', href: 'admin-reconciliation.html' },
+    { type: 'item', id: 'tarification', label: 'Tarification', icon: 'percent', href: 'admin-tarification.html' },
+    { type: 'item', id: 'fx', label: 'Taux de change', icon: 'exchange', href: 'admin-fx.html' },
     { type: 'item', id: 'rapports', label: 'Rapports', icon: 'report', href: 'admin-rapports.html' },
     { type: 'section', label: 'Système' },
     { type: 'item', id: 'alertes', label: 'Alertes', icon: 'bell', href: 'admin-alertes.html', badge: '4' },
@@ -51,13 +66,19 @@
     { type: 'section', label: 'Paiements' },
     { type: 'item', id: 'liens', label: 'Liens de paiement', icon: 'link', href: 'merchant-liens.html' },
     { type: 'item', id: 'transactions', label: 'Transactions', icon: 'chart', href: 'merchant-transactions.html' },
+    { type: 'item', id: 'remboursements', label: 'Remboursements', icon: 'refund', href: 'merchant-remboursements.html' },
+    { type: 'item', id: 'litiges', label: 'Litiges', icon: 'scale', href: 'merchant-litiges.html', badge: '2' },
     { type: 'section', label: 'Finances' },
     { type: 'item', id: 'wallets', label: 'Wallets', icon: 'wallet', href: 'merchant-wallets.html' },
     { type: 'item', id: 'reversements', label: 'Reversements', icon: 'send', href: 'merchant-reversements.html' },
+    { type: 'section', label: 'Relation client' },
+    { type: 'item', id: 'clients', label: 'Clients', icon: 'contact', href: 'merchant-clients.html' },
     { type: 'section', label: 'Développeur' },
     { type: 'item', id: 'api', label: 'Clés API', icon: 'key', href: 'merchant-api.html' },
+    { type: 'item', id: 'webhooks', label: 'Webhooks', icon: 'webhook', href: 'merchant-webhooks.html' },
     { type: 'item', id: 'documentation', label: 'Documentation', icon: 'book', href: 'merchant-documentation.html' },
-    { type: 'section', label: '' },
+    { type: 'section', label: 'Compte' },
+    { type: 'item', id: 'equipe', label: 'Équipe', icon: 'user', href: 'merchant-equipe.html' },
     { type: 'item', id: 'parametres', label: 'Paramètres', icon: 'settings', href: 'merchant-parametres.html' },
   ];
 
@@ -82,6 +103,8 @@
     const existing = Array.from(root.children);
 
     const navItems = isAdmin ? ADMIN_NAV : MERCHANT_NAV;
+    const notifHref = isAdmin ? 'admin-notifications.html' : 'merchant-notifications.html';
+    const profilHref = isAdmin ? 'admin-profil.html' : 'merchant-profil.html';
     const brandSub = isAdmin ? 'Admin' : 'Marchand';
     const userName = isAdmin ? 'Sylvère T.' : 'Ma Boutique CI';
     const userRole = isAdmin ? 'Super Admin' : 'Compte vérifié';
@@ -118,11 +141,11 @@
           <div class="topbar__search">
             ${I.search}<span>Rechercher</span><kbd>⌘K</kbd>
           </div>
-          <button class="icon-btn" aria-label="Notifications">${I.notif}<span class="icon-btn__dot"></span></button>
-          <button class="topbar__avatar">
+          <a class="icon-btn" href="${notifHref}" aria-label="Notifications">${I.notif}<span class="icon-btn__dot"></span></a>
+          <a class="topbar__avatar" href="${profilHref}">
             <span class="text-secondary fs-13">${userName.split(' ')[0]}</span>
             <div class="avatar ${userAv}" style="width:28px;height:28px;font-size:11px">${userInit}</div>
-          </button>
+          </a>
         </header>
         <div class="content-slot"></div>
       </div>
