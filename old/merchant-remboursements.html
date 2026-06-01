@@ -1,0 +1,1259 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Marchand · Remboursements — WouraPay</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+<style id="kp-tokens">/* KoyaPay — Design System Tokens */
+
+:root {
+  /* Backgrounds */
+  --bg-base: #0A0F0D;
+  --bg-content: #0D1410;
+  --bg-surface: #111916;
+  --bg-elevated: #1A2420;
+  --bg-hover: #1F2E29;
+  --bg-border: #1E2D28;
+
+  /* Accent green */
+  --green-50: #E8F5EE;
+  --green-100: #C3E8D2;
+  --green-400: #3DD68C;
+  --green-500: #22C55E;
+  --green-600: #16A34A;
+  --green-700: #15803D;
+
+  /* Text */
+  --text-primary: #F0FAF4;
+  --text-secondary: #8BA898;
+  --text-tertiary: #4D6B60;
+  --text-inverse: #0A0F0D;
+
+  /* Semantic */
+  --success-bg: #0D2818;
+  --success-text: #22C55E;
+  --warning-bg: #2A1F00;
+  --warning-text: #F59E0B;
+  --error-bg: #2A0D0D;
+  --error-text: #EF4444;
+  --info-bg: #0D1A2A;
+  --info-text: #3B82F6;
+  --pending-bg: #1A1A2A;
+  --pending-text: #8B5CF6;
+
+  /* Neutrals */
+  --neutral-100: #F0FAF4;
+  --neutral-400: #6B8C80;
+  --neutral-600: #2D4A40;
+  --neutral-800: #162320;
+
+  /* Spacing */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* Radii */
+  --r-1: 2px;
+  --r-2: 6px;
+  --r-3: 8px;
+  --r-4: 12px;
+  --r-5: 16px;
+  --r-6: 20px;
+
+  /* Shadows */
+  --sh-sm: 0 1px 2px rgba(0,0,0,0.4);
+  --sh-md: 0 4px 12px rgba(0,0,0,0.5);
+  --sh-lg: 0 8px 32px rgba(0,0,0,0.6);
+  --sh-glow: 0 0 20px rgba(34,197,94,0.15);
+  --sh-glow-strong: 0 0 40px rgba(34,197,94,0.25);
+
+  /* Type scale */
+  --fs-display: 36px;
+  --fs-h1: 28px;
+  --fs-h2: 22px;
+  --fs-h3: 18px;
+  --fs-h4: 15px;
+  --fs-body-l: 15px;
+  --fs-body: 14px;
+  --fs-body-s: 13px;
+  --fs-caption: 12px;
+  --fs-mono: 13px;
+
+  /* Layout */
+  --sidebar-w: 240px;
+  --topbar-h: 56px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+}
+
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+
+.mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bg-border); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--neutral-600); }
+
+/* KoyaPay — App shell & shared components */
+
+/* ====================== APP LAYOUT ====================== */
+.app {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+  min-width: 1280px;
+  background: var(--bg-content);
+}
+
+/* ====================== SIDEBAR ====================== */
+.sidebar {
+  background: var(--bg-base);
+  border-right: 1px solid var(--bg-border);
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-5) 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 var(--sp-5) var(--sp-6);
+}
+.sidebar__brand-mark {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--green-500), var(--green-700));
+  display: grid; place-items: center;
+  color: var(--text-inverse);
+  font-weight: 800; font-size: 15px;
+  box-shadow: var(--sh-glow);
+}
+.sidebar__brand-name {
+  font-size: 15px; font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+.sidebar__brand-name small {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.sidebar__nav {
+  flex: 1; overflow-y: auto;
+  display: flex; flex-direction: column;
+  gap: 2px;
+  padding: 0 12px;
+}
+.sidebar__section {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: var(--sp-4) var(--sp-3) var(--sp-2);
+}
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  transition: all 0.15s;
+  position: relative;
+}
+.sidebar__link:hover {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+.sidebar__link svg { flex-shrink: 0; }
+.sidebar__link--active {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+.sidebar__link--active::before {
+  content: '';
+  position: absolute; left: -12px; top: 8px; bottom: 8px;
+  width: 2px; background: var(--green-500);
+  border-radius: 2px;
+}
+.sidebar__link .badge {
+  margin-left: auto;
+  background: var(--green-500);
+  color: var(--text-inverse);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+.sidebar__user {
+  margin-top: auto;
+  padding: var(--sp-3) var(--sp-5) 0;
+  border-top: 1px solid var(--bg-border);
+  padding-top: var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2D4A40, #15803D);
+  display: grid; place-items: center;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.sidebar__user-info { min-width: 0; }
+.sidebar__user-name {
+  font-size: var(--fs-body-s);
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.sidebar__user-role {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+/* ====================== MAIN ====================== */
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ====================== TOPBAR ====================== */
+.topbar {
+  height: var(--topbar-h);
+  background: var(--bg-base);
+  border-bottom: 1px solid var(--bg-border);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sp-8);
+  gap: var(--sp-5);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.breadcrumb {
+  display: flex; align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: var(--fs-body-s);
+}
+.breadcrumb__sep { color: var(--text-tertiary); }
+.breadcrumb__current { color: var(--text-primary); font-weight: 500; }
+.topbar__spacer { flex: 1; }
+.topbar__search {
+  display: flex; align-items: center;
+  gap: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  width: 240px;
+  color: var(--text-tertiary);
+  font-size: var(--fs-body-s);
+}
+.topbar__search kbd {
+  margin-left: auto;
+  font-family: inherit;
+  font-size: 10px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-border);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--text-secondary);
+}
+.icon-btn {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 6px;
+  background: transparent; border: 1px solid transparent;
+  color: var(--text-secondary);
+  transition: all 0.15s;
+  position: relative;
+}
+.icon-btn:hover {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+.icon-btn__dot {
+  position: absolute;
+  top: 6px; right: 6px;
+  width: 8px; height: 8px;
+  background: var(--green-500);
+  border: 2px solid var(--bg-base);
+  border-radius: 50%;
+}
+.topbar__avatar {
+  display: flex; align-items: center;
+  gap: var(--sp-2);
+  padding: 4px 4px 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--bg-border);
+  background: var(--bg-surface);
+}
+.topbar__avatar:hover { background: var(--bg-elevated); }
+
+/* ====================== PAGE ====================== */
+.page {
+  flex: 1;
+  padding: var(--sp-8) var(--sp-10);
+  max-width: 1600px;
+  width: 100%;
+}
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-8);
+}
+.page-title {
+  font-size: var(--fs-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.page-subtitle {
+  color: var(--text-secondary);
+  font-size: var(--fs-body-l);
+  margin: var(--sp-2) 0 0;
+}
+.page-h1 { font-size: var(--fs-h1); font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+.page-h2 { font-size: var(--fs-h2); font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+.page-h3 { font-size: var(--fs-h3); font-weight: 600; margin: 0; }
+
+/* ====================== BUTTON ====================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  height: 40px;
+  padding: 0 var(--sp-4);
+  border-radius: var(--r-3);
+  border: 1px solid transparent;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.15s;
+  background: transparent;
+  color: var(--text-primary);
+}
+.btn--primary {
+  background: var(--green-500);
+  color: var(--text-inverse);
+  box-shadow: var(--sh-sm);
+}
+.btn--primary:hover {
+  background: var(--green-400);
+  box-shadow: var(--sh-glow-strong);
+}
+.btn--secondary {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--neutral-600);
+}
+.btn--secondary:hover { background: var(--bg-hover); }
+.btn--ghost {
+  color: var(--text-secondary);
+}
+.btn--ghost:hover { background: var(--bg-elevated); color: var(--text-primary); }
+.btn--danger {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border-color: rgba(239,68,68,0.2);
+}
+.btn--danger:hover { background: #3a1414; }
+.btn--sm { height: 32px; padding: 0 var(--sp-3); font-size: var(--fs-body-s); }
+.btn--xs { height: 28px; padding: 0 var(--sp-2); font-size: var(--fs-caption); }
+.btn--block { width: 100%; }
+
+/* ====================== INPUT ====================== */
+.input {
+  height: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  color: var(--text-primary);
+  border-radius: var(--r-3);
+  padding: 0 var(--sp-3);
+  font-size: var(--fs-body);
+  width: 100%;
+  outline: none;
+  transition: all 0.15s;
+}
+.input::placeholder { color: var(--text-tertiary); }
+.input:focus {
+  border-color: var(--green-500);
+  box-shadow: var(--sh-glow);
+}
+.input--with-icon { padding-left: 36px; }
+.input-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.input-wrap > svg {
+  position: absolute;
+  left: 12px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.field__label {
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+.field__hint {
+  font-size: var(--fs-caption);
+  color: var(--text-tertiary);
+}
+.field__error {
+  font-size: var(--fs-caption);
+  color: var(--error-text);
+}
+.select {
+  height: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  color: var(--text-primary);
+  border-radius: var(--r-3);
+  padding: 0 32px 0 var(--sp-3);
+  font-size: var(--fs-body);
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238BA898' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+/* ====================== BADGE ====================== */
+.badge-st {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: capitalize;
+}
+.badge-st__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+}
+.badge-st--success { background: var(--success-bg); color: var(--success-text); }
+.badge-st--success .badge-st__dot { background: var(--success-text); }
+.badge-st--pending { background: var(--pending-bg); color: var(--pending-text); }
+.badge-st--pending .badge-st__dot { background: var(--pending-text); }
+.badge-st--warning { background: var(--warning-bg); color: var(--warning-text); }
+.badge-st--warning .badge-st__dot { background: var(--warning-text); }
+.badge-st--error { background: var(--error-bg); color: var(--error-text); }
+.badge-st--error .badge-st__dot { background: var(--error-text); }
+.badge-st--info { background: var(--info-bg); color: var(--info-text); }
+.badge-st--info .badge-st__dot { background: var(--info-text); }
+.badge-st--neutral { background: var(--bg-elevated); color: var(--text-tertiary); }
+.badge-st--neutral .badge-st__dot { background: var(--text-tertiary); }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border-radius: 4px;
+  border: 1px solid var(--bg-border);
+}
+
+/* ====================== CARD ====================== */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--r-4);
+  padding: var(--sp-5);
+}
+.card--lg { padding: var(--sp-6); }
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-4);
+  gap: var(--sp-3);
+}
+.card__title {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  margin: 0;
+}
+.card__sub {
+  color: var(--text-secondary);
+  font-size: var(--fs-body-s);
+  margin: 2px 0 0;
+}
+
+/* ====================== KPI CARD ====================== */
+.kpi {
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--r-4);
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  position: relative;
+  overflow: hidden;
+}
+.kpi__top {
+  display: flex; align-items: center;
+  gap: var(--sp-2);
+  color: var(--text-secondary);
+}
+.kpi__icon {
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  background: var(--bg-elevated);
+  border-radius: 8px;
+  color: var(--green-500);
+}
+.kpi__label {
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.kpi__value {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-feature-settings: 'tnum';
+  color: var(--text-primary);
+}
+.kpi__value small {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-left: 4px;
+}
+.kpi__delta {
+  display: inline-flex; align-items: center;
+  gap: 4px;
+  font-size: var(--fs-caption);
+  font-weight: 600;
+}
+.kpi__delta--up { color: var(--green-500); }
+.kpi__delta--down { color: var(--error-text); }
+.kpi__spark {
+  position: absolute;
+  right: var(--sp-5); bottom: var(--sp-5);
+  width: 80px; height: 28px;
+  color: var(--green-500);
+  opacity: 0.7;
+}
+
+/* ====================== TABLE ====================== */
+.table-wrap {
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--r-4);
+  overflow: hidden;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-body);
+}
+.table thead th {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--bg-border);
+  color: var(--text-secondary);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+  padding: var(--sp-3) var(--sp-4);
+  white-space: nowrap;
+}
+.table tbody td {
+  padding: 14px var(--sp-4);
+  border-bottom: 1px solid var(--bg-border);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr { transition: background 0.1s; cursor: pointer; }
+.table tbody tr:hover { background: rgba(31,46,41,0.4); }
+.table .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  flex-wrap: wrap;
+}
+.table-toolbar .input-wrap { width: 280px; }
+.table-toolbar__right { margin-left: auto; display: flex; gap: var(--sp-2); }
+
+.table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-3) var(--sp-4);
+  border-top: 1px solid var(--bg-border);
+  color: var(--text-secondary);
+  font-size: var(--fs-body-s);
+}
+.pager {
+  display: flex; align-items: center;
+  gap: 4px;
+}
+.pager button {
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  background: transparent;
+  border: 1px solid var(--bg-border);
+  color: var(--text-secondary);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.pager button.is-active {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--neutral-600);
+}
+
+/* ====================== TABS ====================== */
+.tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--bg-border);
+  margin-bottom: var(--sp-5);
+}
+.tab {
+  padding: 10px var(--sp-4);
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tab .count {
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+.tab:hover { color: var(--text-primary); }
+.tab--active { color: var(--text-primary); }
+.tab--active::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 2px; background: var(--green-500);
+}
+.tab--active .count { background: var(--success-bg); color: var(--success-text); }
+
+/* ====================== AVATAR INLINE ====================== */
+.av {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: inline-grid; place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+.av--xs { width: 22px; height: 22px; font-size: 10px; }
+.av--lg { width: 40px; height: 40px; font-size: 14px; }
+.av--xl { width: 56px; height: 56px; font-size: 18px; }
+.av-1 { background: linear-gradient(135deg, #3DD68C, #15803D); }
+.av-2 { background: linear-gradient(135deg, #8B5CF6, #5b21b6); }
+.av-3 { background: linear-gradient(135deg, #F59E0B, #b45309); }
+.av-4 { background: linear-gradient(135deg, #3B82F6, #1e40af); }
+.av-5 { background: linear-gradient(135deg, #EF4444, #991b1b); }
+.av-6 { background: linear-gradient(135deg, #14b8a6, #115e59); }
+
+.cell-merchant {
+  display: flex; align-items: center; gap: 10px;
+}
+.cell-merchant__name { font-weight: 500; color: var(--text-primary); }
+.cell-merchant__email { font-size: 12px; color: var(--text-tertiary); }
+
+/* ====================== NETWORK LOGO ====================== */
+.netlogo {
+  width: 24px; height: 24px;
+  border-radius: 5px;
+  display: inline-grid; place-items: center;
+  font-size: 9px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+.netlogo--mtn { background: #FFCB05; color: #000; }
+.netlogo--moov { background: #1E4DA1; }
+.netlogo--orange { background: #FF6600; }
+.netlogo--wave { background: #1DC8F1; color: #000; }
+.netlogo--airtel { background: #ED1C24; }
+.netlogo--mpesa { background: #4CAF50; }
+.netlogo--coris { background: #006847; }
+.netlogo--free { background: #CD1041; }
+.netlogo--btc { background: #F7931A; color: #fff; }
+.netlogo--usdt { background: #26A17B; }
+.netlogo--eth { background: #627EEA; }
+
+.cell-network {
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* ====================== AGGREGATOR BADGE ====================== */
+.agg {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid;
+}
+.agg--pawapay { background: rgba(34,197,94,0.08); color: var(--green-400); border-color: rgba(34,197,94,0.2); }
+.agg--hub2 { background: rgba(59,130,246,0.08); color: #60a5fa; border-color: rgba(59,130,246,0.2); }
+.agg--feexpay { background: rgba(245,158,11,0.08); color: #fbbf24; border-color: rgba(245,158,11,0.2); }
+.agg--nowpayments { background: rgba(139,92,246,0.08); color: #a78bfa; border-color: rgba(139,92,246,0.2); }
+
+/* ====================== SLIDE-OVER ====================== */
+.slideover {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: 480px;
+  background: var(--bg-surface);
+  border-left: 1px solid var(--bg-border);
+  box-shadow: var(--sh-lg);
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+}
+.slideover__header {
+  padding: var(--sp-5) var(--sp-6);
+  border-bottom: 1px solid var(--bg-border);
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: var(--sp-3);
+}
+.slideover__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+.slideover__footer {
+  padding: var(--sp-4) var(--sp-6);
+  border-top: 1px solid var(--bg-border);
+  display: flex;
+  gap: var(--sp-3);
+  justify-content: flex-end;
+}
+.slideover__section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: var(--sp-3);
+}
+
+/* ====================== MODAL ====================== */
+.scrim {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  display: grid; place-items: center;
+  z-index: 60;
+}
+.modal {
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--r-5);
+  box-shadow: var(--sh-lg);
+  width: 480px;
+  max-width: 92vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+.modal--lg { width: 640px; }
+.modal__header {
+  padding: var(--sp-5) var(--sp-6) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--sp-3);
+}
+.modal__body {
+  padding: var(--sp-5) var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  overflow-y: auto;
+}
+.modal__footer {
+  padding: 0 var(--sp-6) var(--sp-5);
+  display: flex;
+  gap: var(--sp-3);
+  justify-content: flex-end;
+}
+
+/* ====================== TOAST ====================== */
+.toast {
+  position: fixed;
+  right: var(--sp-6);
+  bottom: var(--sp-6);
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-border);
+  border-left: 3px solid var(--green-500);
+  border-radius: var(--r-3);
+  padding: var(--sp-3) var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  box-shadow: var(--sh-md);
+  z-index: 70;
+  min-width: 280px;
+  font-size: var(--fs-body-s);
+}
+
+/* ====================== TIMELINE ====================== */
+.timeline { display: flex; flex-direction: column; gap: var(--sp-3); }
+.tl-item {
+  display: grid;
+  grid-template-columns: 80px 16px 1fr;
+  gap: var(--sp-3);
+  align-items: flex-start;
+  font-size: var(--fs-body-s);
+}
+.tl-item__time { color: var(--text-tertiary); font-family: 'JetBrains Mono', monospace; font-size: 12px; padding-top: 1px; }
+.tl-item__bullet {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--green-500);
+  margin-top: 5px;
+  margin-left: 3px;
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.15);
+  position: relative;
+}
+.tl-item__bullet--neutral {
+  background: var(--text-tertiary);
+  box-shadow: 0 0 0 3px rgba(77,107,96,0.15);
+}
+.tl-item:not(:last-child) .tl-item__bullet::after {
+  content: '';
+  position: absolute;
+  top: 14px; left: 4px;
+  width: 2px; height: calc(100% + 8px);
+  background: var(--bg-border);
+}
+.tl-item__label { color: var(--text-primary); }
+
+/* ====================== DETAIL ROWS ====================== */
+.kv-list {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 12px var(--sp-4);
+  font-size: var(--fs-body-s);
+}
+.kv-list dt { color: var(--text-secondary); }
+.kv-list dd { margin: 0; color: var(--text-primary); }
+.kv-list dd.mono { font-size: 12.5px; }
+
+.amount-row {
+  display: flex; justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--bg-border);
+  font-size: var(--fs-body);
+}
+.amount-row:last-child { border-bottom: none; }
+.amount-row__label { color: var(--text-secondary); }
+.amount-row__value { font-family: 'JetBrains Mono', monospace; }
+.amount-row--total { font-weight: 700; }
+.amount-row--total .amount-row__value { color: var(--green-500); font-size: 16px; }
+.amount-row--deduct .amount-row__value { color: var(--text-secondary); }
+
+/* ====================== SEGMENTED ====================== */
+.seg {
+  display: inline-flex;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: 8px;
+  padding: 3px;
+}
+.seg button {
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  color: var(--text-secondary);
+  font-size: var(--fs-body-s);
+  font-weight: 500;
+}
+.seg button.is-active {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+/* ====================== SWITCH ====================== */
+.switch {
+  width: 36px; height: 20px;
+  background: var(--bg-elevated);
+  border-radius: 999px;
+  position: relative;
+  display: inline-block;
+  border: 1px solid var(--bg-border);
+  transition: all 0.15s;
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  transition: all 0.15s;
+}
+.switch.is-on { background: var(--green-500); border-color: var(--green-500); }
+.switch.is-on::after { left: 18px; background: #fff; }
+
+/* ====================== UTILS ====================== */
+.row { display: flex; align-items: center; gap: var(--sp-3); }
+.col { display: flex; flex-direction: column; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+.gap-5 { gap: 20px; }
+.gap-6 { gap: 24px; }
+.flex { display: flex; }
+.flex-1 { flex: 1; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-success { color: var(--green-500); }
+.text-error { color: var(--error-text); }
+.text-warning { color: var(--warning-text); }
+.text-right { text-align: right; }
+.mt-2 { margin-top: 8px; }
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-6 { margin-bottom: 24px; }
+.grid { display: grid; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.fs-12 { font-size: 12px; }
+.fs-13 { font-size: 13px; }
+.fs-h3 { font-size: var(--fs-h3); }
+.fs-h2 { font-size: var(--fs-h2); }
+.fs-h1 { font-size: var(--fs-h1); }
+.tight { letter-spacing: -0.01em; }
+.tighter { letter-spacing: -0.02em; }
+
+/* ====================== EMPTY STATE ====================== */
+.empty {
+  padding: var(--sp-12) var(--sp-6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.empty__icon {
+  width: 56px; height: 56px;
+  display: grid; place-items: center;
+  background: var(--bg-elevated);
+  border-radius: 14px;
+  color: var(--text-tertiary);
+  margin-bottom: var(--sp-2);
+}
+.empty__title { font-size: var(--fs-h3); font-weight: 600; }
+.empty__body { color: var(--text-secondary); max-width: 320px; }
+</style>
+</head>
+<body>
+<div class="app" data-app="merchant" data-nav="remboursements" data-breadcrumb="Remboursements" data-screen-label="M11 Remboursements">
+  <main class="page">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Remboursements</h1>
+        <p class="page-subtitle">Remboursez vos clients en quelques clics</p>
+      </div>
+      <button class="btn btn--primary btn--sm" onclick="document.getElementById('rfdModal').style.display='grid'">+ Nouveau remboursement</button>
+    </div>
+
+    <div class="grid-4 mb-6">
+      <div class="card" style="padding:18px 20px"><div class="fs-12 text-tertiary" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:600">Ce mois</div><div style="font-size:22px;font-weight:700;margin-top:6px">7</div><div class="fs-12 text-secondary">68 500 XOF</div></div>
+      <div class="card" style="padding:18px 20px"><div class="fs-12 text-tertiary" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:600">En cours</div><div style="font-size:22px;font-weight:700;margin-top:6px;color:var(--pending-text)">1</div><div class="fs-12 text-secondary">10 000 XOF</div></div>
+      <div class="card" style="padding:18px 20px"><div class="fs-12 text-tertiary" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:600">Effectués</div><div style="font-size:22px;font-weight:700;margin-top:6px;color:var(--green-500)">6</div><div class="fs-12 text-secondary">58 500 XOF</div></div>
+      <div class="card" style="padding:18px 20px"><div class="fs-12 text-tertiary" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:600">Taux</div><div style="font-size:22px;font-weight:700;margin-top:6px">1,2%</div><div class="fs-12 text-secondary">des paiements</div></div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>Référence</th><th>Transaction</th><th>Client</th><th class="num">Montant</th><th>Type</th><th>Motif</th><th>Statut</th><th>Date</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">RFD-00128</td><td class="mono fs-13">KPY-12790</td><td class="mono fs-13">+229 61 ** 47</td><td class="num mono">10 000 XOF</td><td><span class="tag">Total</span></td><td class="text-secondary">Demande client</td><td><span class="badge-st badge-st--pending"><span class="badge-st__dot"></span>En cours</span></td><td class="text-secondary">il y a 22 min</td></tr>
+          <tr><td class="mono">RFD-00121</td><td class="mono fs-13">KPY-12702</td><td class="mono fs-13">+225 07 ** 12</td><td class="num mono">4 500 XOF</td><td><span class="tag">Total</span></td><td class="text-secondary">Produit indisponible</td><td><span class="badge-st badge-st--success"><span class="badge-st__dot"></span>Remboursé</span></td><td class="text-secondary">hier</td></tr>
+          <tr><td class="mono">RFD-00118</td><td class="mono fs-13">KPY-12655</td><td class="mono fs-13">+229 65 ** 22</td><td class="num mono">6 250 XOF</td><td><span class="tag">Partiel</span></td><td class="text-secondary">Geste commercial</td><td><span class="badge-st badge-st--success"><span class="badge-st__dot"></span>Remboursé</span></td><td class="text-secondary">23 mai</td></tr>
+          <tr><td class="mono">RFD-00112</td><td class="mono fs-13">KPY-12588</td><td class="mono fs-13">+221 77 ** 88</td><td class="num mono">8 250 XOF</td><td><span class="tag">Total</span></td><td class="text-secondary">Doublon</td><td><span class="badge-st badge-st--success"><span class="badge-st__dot"></span>Remboursé</span></td><td class="text-secondary">20 mai</td></tr>
+          <tr><td class="mono">RFD-00109</td><td class="mono fs-13">KPY-12540</td><td class="mono fs-13">+228 90 ** 04</td><td class="num mono">2 200 XOF</td><td><span class="tag">Total</span></td><td class="text-secondary">Demande client</td><td><span class="badge-st badge-st--error"><span class="badge-st__dot"></span>Refusé</span></td><td class="text-secondary">18 mai</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<div class="scrim" id="rfdModal" style="display:none">
+  <div class="modal">
+    <div class="modal__header">
+      <div><div class="fs-12 text-tertiary" style="text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Nouveau</div><h2 class="page-h2" style="margin-top:4px">Rembourser un paiement</h2></div>
+      <button class="icon-btn" onclick="document.getElementById('rfdModal').style.display='none'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal__body">
+      <div class="field"><label class="field__label">Transaction à rembourser</label><div class="input-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input class="input input--with-icon mono" value="KPY-2026-12790"/></div></div>
+      <div class="row gap-3" style="padding:12px;background:var(--bg-elevated);border-radius:8px"><div class="netlogo netlogo--mtn" style="width:32px;height:32px;border-radius:8px;font-size:10px">M</div><div class="flex-1"><div class="font-semibold fs-13">10 000 XOF · MTN Bénin</div><div class="fs-12 text-secondary">+229 61 ** ** 47 · 26 mai</div></div></div>
+      <div class="field"><label class="field__label">Type de remboursement</label><div class="seg" style="align-self:flex-start"><button class="is-active">Total (10 000)</button><button>Partiel</button></div></div>
+      <div class="field"><label class="field__label">Motif</label><select class="select"><option>Demande client</option><option>Produit indisponible</option><option>Geste commercial</option><option>Doublon</option></select></div>
+      <div class="row gap-3" style="padding:12px;background:var(--info-bg);border:1px solid rgba(59,130,246,0.2);border-radius:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--info-text)" stroke-width="1.5" stroke-linecap="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="fs-13" style="color:#93c5fd">Le montant sera renvoyé sur le compte MTN du client sous 24-48 h. Les frais initiaux ne sont pas récupérables.</div></div>
+    </div>
+    <div class="modal__footer"><button class="btn btn--ghost" onclick="document.getElementById('rfdModal').style.display='none'">Annuler</button><button class="btn btn--primary">Confirmer le remboursement</button></div>
+  </div>
+</div>
+<script>/* WouraPay shared shell — renders sidebar + topbar from data attrs */
+(function () {
+  const I = {
+    // Lucide outline, stroke 1.5
+    home:        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+    chart:       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+    bank:        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 18 0"/><path d="M5 21V10"/><path d="M19 21V10"/><path d="M9 21v-7"/><path d="M15 21v-7"/><path d="m12 3-9 6h18z"/></svg>',
+    wallet:      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>',
+    users:       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+    globe:       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg>',
+    settings:    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>',
+    trend:       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
+    report:      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>',
+    bell:        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>',
+    terminal:    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>',
+    user:        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+    link:        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
+    send:        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+    key:         '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>',
+    book:        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+    plug:        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z"/></svg>',
+    search:      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>',
+    notif:       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>',
+    chevronDown: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>',
+    chevronRight:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>',
+    refund:      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>',
+    scale:       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>',
+    shieldCheck: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>',
+    webhook:     '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2"/><path d="m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06"/><path d="m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8"/></svg>',
+    reconcile:   '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M11 18H8a2 2 0 0 1-2-2V9"/></svg>',
+    percent:     '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>',
+    contact:     '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18a4 4 0 0 0-8 0"/><circle cx="12" cy="11" r="3"/><rect x="3" y="4" width="18" height="16" rx="2"/></svg>',
+  };
+  window.KP_ICONS = I;
+
+  const ADMIN_NAV = [
+    { type: 'item', id: 'dashboard', label: 'Dashboard', icon: 'home', href: 'admin-dashboard.html' },
+    { type: 'section', label: 'Opérations' },
+    { type: 'item', id: 'transactions', label: 'Transactions', icon: 'chart', href: 'admin-transactions.html' },
+    { type: 'item', id: 'reversements', label: 'Reversements', icon: 'bank', href: 'admin-reversements.html', badge: '12' },
+    { type: 'item', id: 'remboursements', label: 'Remboursements', icon: 'refund', href: 'admin-remboursements.html' },
+    { type: 'item', id: 'litiges', label: 'Litiges', icon: 'scale', href: 'admin-litiges.html', badge: '3' },
+    { type: 'item', id: 'wallets', label: 'Wallets', icon: 'wallet', href: 'admin-wallets.html' },
+    { type: 'section', label: 'Marchands' },
+    { type: 'item', id: 'marchands', label: 'Marchands', icon: 'users', href: 'admin-marchands.html' },
+    { type: 'item', id: 'kyc', label: 'Vérifications KYC', icon: 'shieldCheck', href: 'admin-kyc.html', badge: '8' },
+    { type: 'section', label: 'Réseaux' },
+    { type: 'item', id: 'reseaux', label: 'Pays & Réseaux', icon: 'globe', href: 'admin-reseaux.html' },
+    { type: 'item', id: 'agregateurs', label: 'Agrégateurs', icon: 'plug', href: 'admin-agregateurs.html' },
+    { type: 'item', id: 'webhooks', label: 'Webhooks', icon: 'webhook', href: 'admin-webhooks.html' },
+    { type: 'section', label: 'Finance' },
+    { type: 'item', id: 'revenus', label: 'Revenus', icon: 'trend', href: 'admin-revenus.html' },
+    { type: 'item', id: 'reconciliation', label: 'Réconciliation', icon: 'reconcile', href: 'admin-reconciliation.html' },
+    { type: 'item', id: 'tarification', label: 'Tarification', icon: 'percent', href: 'admin-tarification.html' },
+    { type: 'item', id: 'fx', label: 'Taux de change', icon: 'exchange', href: 'admin-fx.html' },
+    { type: 'item', id: 'rapports', label: 'Rapports', icon: 'report', href: 'admin-rapports.html' },
+    { type: 'section', label: 'Système' },
+    { type: 'item', id: 'alertes', label: 'Alertes', icon: 'bell', href: 'admin-alertes.html', badge: '4' },
+    { type: 'item', id: 'logs', label: 'Logs', icon: 'terminal', href: 'admin-logs.html' },
+    { type: 'item', id: 'equipe', label: 'Équipe', icon: 'user', href: 'admin-equipe.html' },
+    { type: 'item', id: 'parametres', label: 'Paramètres', icon: 'settings', href: 'admin-parametres.html' },
+  ];
+
+  const MERCHANT_NAV = [
+    { type: 'item', id: 'home', label: 'Accueil', icon: 'home', href: 'merchant-home.html' },
+    { type: 'section', label: 'Paiements' },
+    { type: 'item', id: 'liens', label: 'Liens de paiement', icon: 'link', href: 'merchant-liens.html' },
+    { type: 'item', id: 'transactions', label: 'Transactions', icon: 'chart', href: 'merchant-transactions.html' },
+    { type: 'item', id: 'remboursements', label: 'Remboursements', icon: 'refund', href: 'merchant-remboursements.html' },
+    { type: 'item', id: 'litiges', label: 'Litiges', icon: 'scale', href: 'merchant-litiges.html', badge: '2' },
+    { type: 'section', label: 'Finances' },
+    { type: 'item', id: 'wallets', label: 'Wallets', icon: 'wallet', href: 'merchant-wallets.html' },
+    { type: 'item', id: 'reversements', label: 'Reversements', icon: 'send', href: 'merchant-reversements.html' },
+    { type: 'section', label: 'Relation client' },
+    { type: 'item', id: 'clients', label: 'Clients', icon: 'contact', href: 'merchant-clients.html' },
+    { type: 'section', label: 'Développeur' },
+    { type: 'item', id: 'api', label: 'Clés API', icon: 'key', href: 'merchant-api.html' },
+    { type: 'item', id: 'webhooks', label: 'Webhooks', icon: 'webhook', href: 'merchant-webhooks.html' },
+    { type: 'item', id: 'documentation', label: 'Documentation', icon: 'book', href: 'merchant-documentation.html' },
+    { type: 'section', label: 'Compte' },
+    { type: 'item', id: 'equipe', label: 'Équipe', icon: 'user', href: 'merchant-equipe.html' },
+    { type: 'item', id: 'parametres', label: 'Paramètres', icon: 'settings', href: 'merchant-parametres.html' },
+  ];
+
+  function navHTML(items, active) {
+    return items.map(it => {
+      if (it.type === 'section') {
+        return `<div class="sidebar__section">${it.label}</div>`;
+      }
+      const cls = 'sidebar__link' + (it.id === active ? ' sidebar__link--active' : '');
+      const badge = it.badge ? `<span class="badge">${it.badge}</span>` : '';
+      return `<a class="${cls}" href="${it.href}">${I[it.icon] || ''}<span>${it.label}</span>${badge}</a>`;
+    }).join('');
+  }
+
+  function renderShell(root) {
+    const app = root.dataset.app || 'admin';
+    const active = root.dataset.nav || '';
+    const breadcrumb = root.dataset.breadcrumb || '';
+    const isAdmin = app === 'admin';
+
+    // Preserve existing page content
+    const existing = Array.from(root.children);
+
+    const navItems = isAdmin ? ADMIN_NAV : MERCHANT_NAV;
+    const notifHref = isAdmin ? 'admin-notifications.html' : 'merchant-notifications.html';
+    const profilHref = isAdmin ? 'admin-profil.html' : 'merchant-profil.html';
+    const brandSub = isAdmin ? 'Admin' : 'Marchand';
+    const userName = isAdmin ? 'Sylvère T.' : 'Ma Boutique CI';
+    const userRole = isAdmin ? 'Super Admin' : 'Compte vérifié';
+    const userAv = isAdmin ? 'av-1' : 'av-3';
+    const userInit = isAdmin ? 'ST' : 'MB';
+
+    const bcrumb = breadcrumb.split('/').map(s => s.trim()).filter(Boolean);
+    const crumbHTML = bcrumb.map((c, i) => {
+      const isLast = i === bcrumb.length - 1;
+      const cls = isLast ? 'breadcrumb__current' : '';
+      const sep = i > 0 ? `<span class="breadcrumb__sep">${I.chevronRight}</span>` : '';
+      return `${sep}<span class="${cls}">${c}</span>`;
+    }).join('');
+
+    root.innerHTML = `
+      <aside class="sidebar" data-screen-label="sidebar">
+        <div class="sidebar__brand">
+          <div class="sidebar__brand-mark">W</div>
+          <div class="sidebar__brand-name">WouraPay<small>${brandSub}</small></div>
+        </div>
+        <nav class="sidebar__nav">${navHTML(navItems, active)}</nav>
+        <div class="sidebar__user">
+          <div class="avatar ${userAv}">${userInit}</div>
+          <div class="sidebar__user-info">
+            <div class="sidebar__user-name">${userName}</div>
+            <div class="sidebar__user-role">${userRole}</div>
+          </div>
+        </div>
+      </aside>
+      <div class="main">
+        <header class="topbar">
+          <div class="breadcrumb">${crumbHTML}</div>
+          <div class="topbar__spacer"></div>
+          <div class="topbar__search">
+            ${I.search}<span>Rechercher</span><kbd>⌘K</kbd>
+          </div>
+          <a class="icon-btn" href="${notifHref}" aria-label="Notifications">${I.notif}<span class="icon-btn__dot"></span></a>
+          <a class="topbar__avatar" href="${profilHref}">
+            <span class="text-secondary fs-13">${userName.split(' ')[0]}</span>
+            <div class="avatar ${userAv}" style="width:28px;height:28px;font-size:11px">${userInit}</div>
+          </a>
+        </header>
+        <div class="content-slot"></div>
+      </div>
+    `;
+
+    // Move existing children of root (.app) that were not the original innerHTML — content placed under #page
+    const slot = root.querySelector('.content-slot');
+    if (slot) {
+      existing.forEach(el => slot.appendChild(el));
+      slot.classList.remove('content-slot');
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.app[data-app]').forEach(renderShell);
+  });
+})();
+</script>
+</body>
+</html>

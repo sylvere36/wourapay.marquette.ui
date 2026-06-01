@@ -1075,20 +1075,23 @@ a { color: inherit; text-decoration: none; }
           <div class="agg-card__logo" style="background:linear-gradient(135deg,#22C55E,#15803D)">P</div>
           <div class="flex-1">
             <div class="row gap-2" style="align-items:center"><div class="agg-card__name">PawaPay</div><span class="badge-st badge-st--success"><span class="badge-st__dot"></span>Actif</span></div>
-            <div class="fs-13 text-secondary">api.pawapay.io · Live mode</div>
+            <div class="fs-13 text-secondary">Orchestration MoMo · 20 pays</div>
           </div>
         </div>
+        <div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px;padding:10px 12px;background:var(--bg-elevated);border-radius:10px">
+          <div><div class="fs-12 text-tertiary" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:600">Environnement</div><div class="fs-12 text-secondary mt-2">Mode utilisé pour le routing</div></div>
+          <div class="seg"><button class="is-active">Live</button><button>Sandbox</button></div>
+        </div>
         <div class="col gap-2">
-          <div class="agg-card__row"><span>Couverture</span><span>20 pays · 42 opérateurs</span></div>
+          <div class="agg-card__row"><span>Endpoint live</span><span class="mono fs-12">api.pawapay.io</span></div>
+          <div class="agg-card__row"><span>Endpoint sandbox</span><span class="mono fs-12">sandbox.pawapay.io</span></div>
           <div class="agg-card__row"><span>Opérations</span><span><span class="text-success">✓ Collect</span> · <span class="text-success">✓ Payout</span></span></div>
           <div class="agg-card__row"><span>Volume routé · 30j</span><span class="mono">45 200 000 XOF</span></div>
           <div class="agg-card__row"><span>Taux succès · 7j</span><span class="text-success">96,4%</span></div>
-          <div class="agg-card__row"><span>Latence P95 · 7j</span><span class="mono">1,82s</span></div>
-          <div class="agg-card__row"><span>Dernière transaction</span><span class="text-secondary">il y a 12s</span></div>
         </div>
         <div class="row gap-2">
           <button class="btn btn--secondary btn--sm">Tester la connexion</button>
-          <button class="btn btn--secondary btn--sm">Voir credentials</button>
+          <button class="btn btn--primary btn--sm" onclick="openCreds('PawaPay')">Configurer l'API</button>
         </div>
       </div>
 
@@ -1098,20 +1101,23 @@ a { color: inherit; text-decoration: none; }
           <div class="agg-card__logo" style="background:linear-gradient(135deg,#3B82F6,#1e40af)">H2</div>
           <div class="flex-1">
             <div class="row gap-2" style="align-items:center"><div class="agg-card__name">Hub2</div><span class="badge-st badge-st--success"><span class="badge-st__dot"></span>Actif</span></div>
-            <div class="fs-13 text-secondary">api.hub2.io · Live mode</div>
+            <div class="fs-13 text-secondary">MoMo + cartes · 14 pays</div>
           </div>
         </div>
+        <div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px;padding:10px 12px;background:var(--bg-elevated);border-radius:10px">
+          <div><div class="fs-12 text-tertiary" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:600">Environnement</div><div class="fs-12 text-secondary mt-2">Mode utilisé pour le routing</div></div>
+          <div class="seg"><button class="is-active">Live</button><button>Sandbox</button></div>
+        </div>
         <div class="col gap-2">
-          <div class="agg-card__row"><span>Couverture</span><span>14 pays · 28 opérateurs</span></div>
+          <div class="agg-card__row"><span>Endpoint live</span><span class="mono fs-12">api.hub2.io</span></div>
+          <div class="agg-card__row"><span>Endpoint sandbox</span><span class="mono fs-12">sandbox.hub2.io</span></div>
           <div class="agg-card__row"><span>Opérations</span><span><span class="text-success">✓ Collect</span> · <span class="text-success">✓ Payout</span></span></div>
           <div class="agg-card__row"><span>Volume routé · 30j</span><span class="mono">28 700 000 XOF</span></div>
           <div class="agg-card__row"><span>Taux succès · 7j</span><span class="text-success">94,1%</span></div>
-          <div class="agg-card__row"><span>Latence P95 · 7j</span><span class="mono">2,14s</span></div>
-          <div class="agg-card__row"><span>Dernière transaction</span><span class="text-secondary">il y a 47s</span></div>
         </div>
         <div class="row gap-2">
           <button class="btn btn--secondary btn--sm">Tester la connexion</button>
-          <button class="btn btn--secondary btn--sm">Voir credentials</button>
+          <button class="btn btn--primary btn--sm" onclick="openCreds('Hub2')">Configurer l'API</button>
         </div>
       </div>
 
@@ -1120,21 +1126,24 @@ a { color: inherit; text-decoration: none; }
         <div class="agg-card__header">
           <div class="agg-card__logo" style="background:linear-gradient(135deg,#F59E0B,#b45309)">FX</div>
           <div class="flex-1">
-            <div class="row gap-2" style="align-items:center"><div class="agg-card__name">FeexPay</div><span class="badge-st badge-st--warning"><span class="badge-st__dot"></span>Latence élevée</span></div>
-            <div class="fs-13 text-secondary">api.feexpay.me · Live mode</div>
+            <div class="row gap-2" style="align-items:center"><div class="agg-card__name">FeexPay</div><span class="badge-st badge-st--warning"><span class="badge-st__dot"></span>Sandbox</span></div>
+            <div class="fs-13 text-secondary">MoMo Afrique de l'Ouest · 8 pays</div>
           </div>
         </div>
+        <div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px;padding:10px 12px;background:var(--warning-bg);border:1px solid rgba(245,158,11,0.2);border-radius:10px">
+          <div><div class="fs-12" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:var(--warning-text)">Environnement</div><div class="fs-12 text-secondary mt-2">En test — pas de trafic réel</div></div>
+          <div class="seg"><button>Live</button><button class="is-active">Sandbox</button></div>
+        </div>
         <div class="col gap-2">
-          <div class="agg-card__row"><span>Couverture</span><span>8 pays · 18 opérateurs</span></div>
+          <div class="agg-card__row"><span>Endpoint live</span><span class="mono fs-12 text-tertiary">non configuré</span></div>
+          <div class="agg-card__row"><span>Endpoint sandbox</span><span class="mono fs-12">sandbox.feexpay.me</span></div>
           <div class="agg-card__row"><span>Opérations</span><span><span class="text-success">✓ Collect</span> · <span class="text-success">✓ Payout</span></span></div>
-          <div class="agg-card__row"><span>Volume routé · 30j</span><span class="mono">14 800 000 XOF</span></div>
-          <div class="agg-card__row"><span>Taux succès · 7j</span><span class="text-success">92,8%</span></div>
+          <div class="agg-card__row"><span>Volume routé · 30j</span><span class="mono text-secondary">— sandbox</span></div>
           <div class="agg-card__row"><span>Latence P95 · 7j</span><span class="mono text-warning">4,21s</span></div>
-          <div class="agg-card__row"><span>Dernière transaction</span><span class="text-secondary">il y a 2 min</span></div>
         </div>
         <div class="row gap-2">
           <button class="btn btn--secondary btn--sm">Tester la connexion</button>
-          <button class="btn btn--secondary btn--sm">Voir credentials</button>
+          <button class="btn btn--primary btn--sm" onclick="openCreds('FeexPay')">Configurer l'API</button>
         </div>
       </div>
 
@@ -1144,20 +1153,23 @@ a { color: inherit; text-decoration: none; }
           <div class="agg-card__logo" style="background:linear-gradient(135deg,#8B5CF6,#5b21b6)">NP</div>
           <div class="flex-1">
             <div class="row gap-2" style="align-items:center"><div class="agg-card__name">NowPayments</div><span class="badge-st badge-st--success"><span class="badge-st__dot"></span>Actif</span></div>
-            <div class="fs-13 text-secondary">api.nowpayments.io · Live mode</div>
+            <div class="fs-13 text-secondary">Crypto · 220+ devises</div>
           </div>
         </div>
+        <div class="row" style="justify-content:space-between;align-items:center;margin-bottom:14px;padding:10px 12px;background:var(--bg-elevated);border-radius:10px">
+          <div><div class="fs-12 text-tertiary" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:600">Environnement</div><div class="fs-12 text-secondary mt-2">Mode utilisé pour le routing</div></div>
+          <div class="seg"><button class="is-active">Live</button><button>Sandbox</button></div>
+        </div>
         <div class="col gap-2">
-          <div class="agg-card__row"><span>Couverture</span><span>Crypto · 14 blockchains, 220+ devises</span></div>
+          <div class="agg-card__row"><span>Endpoint live</span><span class="mono fs-12">api.nowpayments.io</span></div>
+          <div class="agg-card__row"><span>Endpoint sandbox</span><span class="mono fs-12">api-sandbox.nowpayments.io</span></div>
           <div class="agg-card__row"><span>Opérations</span><span><span class="text-success">✓ Collect</span> · <span class="text-success">✓ Payout</span></span></div>
           <div class="agg-card__row"><span>Volume routé · 30j</span><span class="mono">8 240 USDT</span></div>
           <div class="agg-card__row"><span>Taux succès · 7j</span><span class="text-success">98,2%</span></div>
-          <div class="agg-card__row"><span>Latence P95 · 7j</span><span class="mono">0,91s</span></div>
-          <div class="agg-card__row"><span>Dernière transaction</span><span class="text-secondary">il y a 5 min</span></div>
         </div>
         <div class="row gap-2">
           <button class="btn btn--secondary btn--sm">Tester la connexion</button>
-          <button class="btn btn--secondary btn--sm">Voir credentials</button>
+          <button class="btn btn--primary btn--sm" onclick="openCreds('NowPayments')">Configurer l'API</button>
         </div>
       </div>
 
@@ -1166,46 +1178,64 @@ a { color: inherit; text-decoration: none; }
   </main>
 </div>
 
-<!-- Credentials modal (open by default for showcase) -->
+<!-- API config modal -->
 <div class="scrim" style="display:none" id="credsModal">
   <div class="modal modal--lg">
     <div class="modal__header">
       <div>
-        <div class="fs-12 text-tertiary" style="text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Credentials sensibles</div>
-        <h2 class="page-h2" style="margin-top:4px">PawaPay</h2>
+        <div class="fs-12 text-tertiary" style="text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Configuration API</div>
+        <h2 class="page-h2" style="margin-top:4px" id="credsName">PawaPay</h2>
       </div>
-      <button class="icon-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <button class="icon-btn" onclick="document.getElementById('credsModal').style.display='none'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="modal__body">
+      <!-- Mode actif -->
+      <div class="row" style="justify-content:space-between;align-items:center;padding:12px 14px;background:var(--bg-elevated);border-radius:10px">
+        <div><div class="font-semibold fs-13">Environnement actif pour le routing</div><div class="fs-12 text-secondary mt-2">Détermine quelles clés sont utilisées en production</div></div>
+        <div class="seg"><button class="is-active" onclick="credEnv(event,'live')">Live</button><button onclick="credEnv(event,'sandbox')">Sandbox</button></div>
+      </div>
+
+      <!-- LIVE config -->
+      <div id="credLive">
+        <div class="slideover__section-label" style="display:flex;align-items:center;gap:8px">Clés Live <span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>en production</span></div>
+        <div class="field"><label class="field__label">Base URL</label><input class="input mono" value="https://api.pawapay.io"/></div>
+        <div class="field"><label class="field__label">API Token (live)</label><div class="row gap-2"><input class="input mono" value="••••••••••••••••••••••••"/><button class="icon-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <div class="field"><label class="field__label">Callback URL (live)</label><input class="input mono" value="https://api.wourapay.com/v1/webhooks/pawapay"/></div>
+      </div>
+
+      <!-- SANDBOX config -->
+      <div id="credSandbox" style="display:none">
+        <div class="slideover__section-label" style="display:flex;align-items:center;gap:8px">Clés Sandbox <span class="badge-st badge-st--warning" style="height:18px"><span class="badge-st__dot"></span>test</span></div>
+        <div class="field"><label class="field__label">Base URL</label><input class="input mono" value="https://sandbox.pawapay.io"/></div>
+        <div class="field"><label class="field__label">API Token (sandbox)</label><div class="row gap-2"><input class="input mono" value="sk_test_4f2b1c8d9e3742fa18e"/><button class="icon-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <div class="field"><label class="field__label">Callback URL (sandbox)</label><input class="input mono" value="https://api.wourapay.com/v1/webhooks/pawapay-test"/></div>
+      </div>
+
       <div class="row gap-3" style="padding:12px;background:var(--warning-bg);border:1px solid rgba(245,158,11,0.2);border-radius:8px">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warning-text)" stroke-width="1.5" stroke-linecap="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg>
-        <div class="fs-13" style="color:var(--warning-text)">Ces informations sont sensibles. Ne les partagez avec personne.</div>
-      </div>
-      <div class="field">
-        <label class="field__label">Environnement</label>
-        <div class="seg" style="align-self:flex-start">
-          <button>Sandbox</button>
-          <button class="is-active">Live</button>
-        </div>
-      </div>
-      <div class="field">
-        <label class="field__label">API Token</label>
-        <div class="row gap-2">
-          <input class="input mono" value="••••••••••••••••••••••••" />
-          <button class="icon-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
-        </div>
-      </div>
-      <div class="field">
-        <label class="field__label">Callback URL</label>
-        <input class="input mono" value="https://api.wourapay.com/v1/webhooks/pawapay" />
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warning-text)" stroke-width="1.5" stroke-linecap="round" style="flex-shrink:0"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg>
+        <div class="fs-13" style="color:var(--warning-text)">Informations sensibles. Le passage en Live route immédiatement le trafic réel via ces clés.</div>
       </div>
     </div>
     <div class="modal__footer">
-      <button class="btn btn--ghost">Annuler</button>
+      <button class="btn btn--secondary">Tester la connexion</button>
+      <button class="btn btn--ghost" onclick="document.getElementById('credsModal').style.display='none'">Annuler</button>
       <button class="btn btn--primary">Sauvegarder</button>
     </div>
   </div>
 </div>
+
+<script>
+function openCreds(name) {
+  document.getElementById('credsName').textContent = name;
+  document.getElementById('credsModal').style.display = 'grid';
+}
+function credEnv(e, env) {
+  document.getElementById('credLive').style.display = env === 'live' ? '' : 'none';
+  document.getElementById('credSandbox').style.display = env === 'sandbox' ? '' : 'none';
+  e.currentTarget.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
+  e.currentTarget.classList.add('is-active');
+}
+</script>
 
 <script>/* WouraPay shared shell — renders sidebar + topbar from data attrs */
 (function () {

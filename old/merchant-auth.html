@@ -1066,8 +1066,9 @@ body {
 .auth-tab { flex: 1; padding: 8px; text-align: center; border-radius: 7px; font-size: 13px; font-weight: 500; color: var(--text-secondary); cursor: pointer; }
 .auth-tab.is-active { background: var(--bg-base); color: var(--text-primary); box-shadow: var(--sh-sm); }
 
-.otp { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+.otp { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
 .otp input {
+  min-width: 0;
   height: 56px;
   background: var(--bg-elevated);
   border: 1px solid var(--bg-border);

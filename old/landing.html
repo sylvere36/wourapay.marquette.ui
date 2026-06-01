@@ -1,0 +1,1506 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>WouraPay — Encaissez partout en Afrique</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+<style id="kp-tokens">/* KoyaPay — Design System Tokens */
+
+:root {
+  /* Backgrounds */
+  --bg-base: #0A0F0D;
+  --bg-content: #0D1410;
+  --bg-surface: #111916;
+  --bg-elevated: #1A2420;
+  --bg-hover: #1F2E29;
+  --bg-border: #1E2D28;
+
+  /* Accent green */
+  --green-50: #E8F5EE;
+  --green-100: #C3E8D2;
+  --green-400: #3DD68C;
+  --green-500: #22C55E;
+  --green-600: #16A34A;
+  --green-700: #15803D;
+
+  /* Text */
+  --text-primary: #F0FAF4;
+  --text-secondary: #8BA898;
+  --text-tertiary: #4D6B60;
+  --text-inverse: #0A0F0D;
+
+  /* Semantic */
+  --success-bg: #0D2818;
+  --success-text: #22C55E;
+  --warning-bg: #2A1F00;
+  --warning-text: #F59E0B;
+  --error-bg: #2A0D0D;
+  --error-text: #EF4444;
+  --info-bg: #0D1A2A;
+  --info-text: #3B82F6;
+  --pending-bg: #1A1A2A;
+  --pending-text: #8B5CF6;
+
+  /* Neutrals */
+  --neutral-100: #F0FAF4;
+  --neutral-400: #6B8C80;
+  --neutral-600: #2D4A40;
+  --neutral-800: #162320;
+
+  /* Spacing */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* Radii */
+  --r-1: 2px;
+  --r-2: 6px;
+  --r-3: 8px;
+  --r-4: 12px;
+  --r-5: 16px;
+  --r-6: 20px;
+
+  /* Shadows */
+  --sh-sm: 0 1px 2px rgba(0,0,0,0.4);
+  --sh-md: 0 4px 12px rgba(0,0,0,0.5);
+  --sh-lg: 0 8px 32px rgba(0,0,0,0.6);
+  --sh-glow: 0 0 20px rgba(34,197,94,0.15);
+  --sh-glow-strong: 0 0 40px rgba(34,197,94,0.25);
+
+  /* Type scale */
+  --fs-display: 36px;
+  --fs-h1: 28px;
+  --fs-h2: 22px;
+  --fs-h3: 18px;
+  --fs-h4: 15px;
+  --fs-body-l: 15px;
+  --fs-body: 14px;
+  --fs-body-s: 13px;
+  --fs-caption: 12px;
+  --fs-mono: 13px;
+
+  /* Layout */
+  --sidebar-w: 240px;
+  --topbar-h: 56px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+}
+
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+
+.mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bg-border); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--neutral-600); }
+
+/* KoyaPay — App shell & shared components */
+
+/* ====================== APP LAYOUT ====================== */
+.app {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+  min-width: 1280px;
+  background: var(--bg-content);
+}
+
+/* ====================== SIDEBAR ====================== */
+.sidebar {
+  background: var(--bg-base);
+  border-right: 1px solid var(--bg-border);
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-5) 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 var(--sp-5) var(--sp-6);
+}
+.sidebar__brand-mark {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--green-500), var(--green-700));
+  display: grid; place-items: center;
+  color: var(--text-inverse);
+  font-weight: 800; font-size: 15px;
+  box-shadow: var(--sh-glow);
+}
+.sidebar__brand-name {
+  font-size: 15px; font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+.sidebar__brand-name small {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.sidebar__nav {
+  flex: 1; overflow-y: auto;
+  display: flex; flex-direction: column;
+  gap: 2px;
+  padding: 0 12px;
+}
+.sidebar__section {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: var(--sp-4) var(--sp-3) var(--sp-2);
+}
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  transition: all 0.15s;
+  position: relative;
+}
+.sidebar__link:hover {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+.sidebar__link svg { flex-shrink: 0; }
+.sidebar__link--active {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+.sidebar__link--active::before {
+  content: '';
+  position: absolute; left: -12px; top: 8px; bottom: 8px;
+  width: 2px; background: var(--green-500);
+  border-radius: 2px;
+}
+.sidebar__link .badge {
+  margin-left: auto;
+  background: var(--green-500);
+  color: var(--text-inverse);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+.sidebar__user {
+  margin-top: auto;
+  padding: var(--sp-3) var(--sp-5) 0;
+  border-top: 1px solid var(--bg-border);
+  padding-top: var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2D4A40, #15803D);
+  display: grid; place-items: center;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.sidebar__user-info { min-width: 0; }
+.sidebar__user-name {
+  font-size: var(--fs-body-s);
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.sidebar__user-role {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+/* ====================== MAIN ====================== */
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ====================== TOPBAR ====================== */
+.topbar {
+  height: var(--topbar-h);
+  background: var(--bg-base);
+  border-bottom: 1px solid var(--bg-border);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sp-8);
+  gap: var(--sp-5);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.breadcrumb {
+  display: flex; align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: var(--fs-body-s);
+}
+.breadcrumb__sep { color: var(--text-tertiary); }
+.breadcrumb__current { color: var(--text-primary); font-weight: 500; }
+.topbar__spacer { flex: 1; }
+.topbar__search {
+  display: flex; align-items: center;
+  gap: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  width: 240px;
+  color: var(--text-tertiary);
+  font-size: var(--fs-body-s);
+}
+.topbar__search kbd {
+  margin-left: auto;
+  font-family: inherit;
+  font-size: 10px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-border);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--text-secondary);
+}
+.icon-btn {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 6px;
+  background: transparent; border: 1px solid transparent;
+  color: var(--text-secondary);
+  transition: all 0.15s;
+  position: relative;
+}
+.icon-btn:hover {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+.icon-btn__dot {
+  position: absolute;
+  top: 6px; right: 6px;
+  width: 8px; height: 8px;
+  background: var(--green-500);
+  border: 2px solid var(--bg-base);
+  border-radius: 50%;
+}
+.topbar__avatar {
+  display: flex; align-items: center;
+  gap: var(--sp-2);
+  padding: 4px 4px 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--bg-border);
+  background: var(--bg-surface);
+}
+.topbar__avatar:hover { background: var(--bg-elevated); }
+
+/* ====================== PAGE ====================== */
+.page {
+  flex: 1;
+  padding: var(--sp-8) var(--sp-10);
+  max-width: 1600px;
+  width: 100%;
+}
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-8);
+}
+.page-title {
+  font-size: var(--fs-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.page-subtitle {
+  color: var(--text-secondary);
+  font-size: var(--fs-body-l);
+  margin: var(--sp-2) 0 0;
+}
+.page-h1 { font-size: var(--fs-h1); font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+.page-h2 { font-size: var(--fs-h2); font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+.page-h3 { font-size: var(--fs-h3); font-weight: 600; margin: 0; }
+
+/* ====================== BUTTON ====================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  height: 40px;
+  padding: 0 var(--sp-4);
+  border-radius: var(--r-3);
+  border: 1px solid transparent;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.15s;
+  background: transparent;
+  color: var(--text-primary);
+}
+.btn--primary {
+  background: var(--green-500);
+  color: var(--text-inverse);
+  box-shadow: var(--sh-sm);
+}
+.btn--primary:hover {
+  background: var(--green-400);
+  box-shadow: var(--sh-glow-strong);
+}
+.btn--secondary {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--neutral-600);
+}
+.btn--secondary:hover { background: var(--bg-hover); }
+.btn--ghost {
+  color: var(--text-secondary);
+}
+.btn--ghost:hover { background: var(--bg-elevated); color: var(--text-primary); }
+.btn--danger {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border-color: rgba(239,68,68,0.2);
+}
+.btn--danger:hover { background: #3a1414; }
+.btn--sm { height: 32px; padding: 0 var(--sp-3); font-size: var(--fs-body-s); }
+.btn--xs { height: 28px; padding: 0 var(--sp-2); font-size: var(--fs-caption); }
+.btn--block { width: 100%; }
+
+/* ====================== INPUT ====================== */
+.input {
+  height: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  color: var(--text-primary);
+  border-radius: var(--r-3);
+  padding: 0 var(--sp-3);
+  font-size: var(--fs-body);
+  width: 100%;
+  outline: none;
+  transition: all 0.15s;
+}
+.input::placeholder { color: var(--text-tertiary); }
+.input:focus {
+  border-color: var(--green-500);
+  box-shadow: var(--sh-glow);
+}
+.input--with-icon { padding-left: 36px; }
+.input-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.input-wrap > svg {
+  position: absolute;
+  left: 12px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.field__label {
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+.field__hint {
+  font-size: var(--fs-caption);
+  color: var(--text-tertiary);
+}
+.field__error {
+  font-size: var(--fs-caption);
+  color: var(--error-text);
+}
+.select {
+  height: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  color: var(--text-primary);
+  border-radius: var(--r-3);
+  padding: 0 32px 0 var(--sp-3);
+  font-size: var(--fs-body);
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238BA898' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+/* ====================== BADGE ====================== */
+.badge-st {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: capitalize;
+}
+.badge-st__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+}
+.badge-st--success { background: var(--success-bg); color: var(--success-text); }
+.badge-st--success .badge-st__dot { background: var(--success-text); }
+.badge-st--pending { background: var(--pending-bg); color: var(--pending-text); }
+.badge-st--pending .badge-st__dot { background: var(--pending-text); }
+.badge-st--warning { background: var(--warning-bg); color: var(--warning-text); }
+.badge-st--warning .badge-st__dot { background: var(--warning-text); }
+.badge-st--error { background: var(--error-bg); color: var(--error-text); }
+.badge-st--error .badge-st__dot { background: var(--error-text); }
+.badge-st--info { background: var(--info-bg); color: var(--info-text); }
+.badge-st--info .badge-st__dot { background: var(--info-text); }
+.badge-st--neutral { background: var(--bg-elevated); color: var(--text-tertiary); }
+.badge-st--neutral .badge-st__dot { background: var(--text-tertiary); }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border-radius: 4px;
+  border: 1px solid var(--bg-border);
+}
+
+/* ====================== CARD ====================== */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--r-4);
+  padding: var(--sp-5);
+}
+.card--lg { padding: var(--sp-6); }
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-4);
+  gap: var(--sp-3);
+}
+.card__title {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  margin: 0;
+}
+.card__sub {
+  color: var(--text-secondary);
+  font-size: var(--fs-body-s);
+  margin: 2px 0 0;
+}
+
+/* ====================== KPI CARD ====================== */
+.kpi {
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--r-4);
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  position: relative;
+  overflow: hidden;
+}
+.kpi__top {
+  display: flex; align-items: center;
+  gap: var(--sp-2);
+  color: var(--text-secondary);
+}
+.kpi__icon {
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  background: var(--bg-elevated);
+  border-radius: 8px;
+  color: var(--green-500);
+}
+.kpi__label {
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.kpi__value {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-feature-settings: 'tnum';
+  color: var(--text-primary);
+}
+.kpi__value small {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-left: 4px;
+}
+.kpi__delta {
+  display: inline-flex; align-items: center;
+  gap: 4px;
+  font-size: var(--fs-caption);
+  font-weight: 600;
+}
+.kpi__delta--up { color: var(--green-500); }
+.kpi__delta--down { color: var(--error-text); }
+.kpi__spark {
+  position: absolute;
+  right: var(--sp-5); bottom: var(--sp-5);
+  width: 80px; height: 28px;
+  color: var(--green-500);
+  opacity: 0.7;
+}
+
+/* ====================== TABLE ====================== */
+.table-wrap {
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--r-4);
+  overflow: hidden;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-body);
+}
+.table thead th {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--bg-border);
+  color: var(--text-secondary);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+  padding: var(--sp-3) var(--sp-4);
+  white-space: nowrap;
+}
+.table tbody td {
+  padding: 14px var(--sp-4);
+  border-bottom: 1px solid var(--bg-border);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr { transition: background 0.1s; cursor: pointer; }
+.table tbody tr:hover { background: rgba(31,46,41,0.4); }
+.table .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  flex-wrap: wrap;
+}
+.table-toolbar .input-wrap { width: 280px; }
+.table-toolbar__right { margin-left: auto; display: flex; gap: var(--sp-2); }
+
+.table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-3) var(--sp-4);
+  border-top: 1px solid var(--bg-border);
+  color: var(--text-secondary);
+  font-size: var(--fs-body-s);
+}
+.pager {
+  display: flex; align-items: center;
+  gap: 4px;
+}
+.pager button {
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  background: transparent;
+  border: 1px solid var(--bg-border);
+  color: var(--text-secondary);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.pager button.is-active {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--neutral-600);
+}
+
+/* ====================== TABS ====================== */
+.tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--bg-border);
+  margin-bottom: var(--sp-5);
+}
+.tab {
+  padding: 10px var(--sp-4);
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tab .count {
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+.tab:hover { color: var(--text-primary); }
+.tab--active { color: var(--text-primary); }
+.tab--active::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 2px; background: var(--green-500);
+}
+.tab--active .count { background: var(--success-bg); color: var(--success-text); }
+
+/* ====================== AVATAR INLINE ====================== */
+.av {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: inline-grid; place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+.av--xs { width: 22px; height: 22px; font-size: 10px; }
+.av--lg { width: 40px; height: 40px; font-size: 14px; }
+.av--xl { width: 56px; height: 56px; font-size: 18px; }
+.av-1 { background: linear-gradient(135deg, #3DD68C, #15803D); }
+.av-2 { background: linear-gradient(135deg, #8B5CF6, #5b21b6); }
+.av-3 { background: linear-gradient(135deg, #F59E0B, #b45309); }
+.av-4 { background: linear-gradient(135deg, #3B82F6, #1e40af); }
+.av-5 { background: linear-gradient(135deg, #EF4444, #991b1b); }
+.av-6 { background: linear-gradient(135deg, #14b8a6, #115e59); }
+
+.cell-merchant {
+  display: flex; align-items: center; gap: 10px;
+}
+.cell-merchant__name { font-weight: 500; color: var(--text-primary); }
+.cell-merchant__email { font-size: 12px; color: var(--text-tertiary); }
+
+/* ====================== NETWORK LOGO ====================== */
+.netlogo {
+  width: 24px; height: 24px;
+  border-radius: 5px;
+  display: inline-grid; place-items: center;
+  font-size: 9px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+.netlogo--mtn { background: #FFCB05; color: #000; }
+.netlogo--moov { background: #1E4DA1; }
+.netlogo--orange { background: #FF6600; }
+.netlogo--wave { background: #1DC8F1; color: #000; }
+.netlogo--airtel { background: #ED1C24; }
+.netlogo--mpesa { background: #4CAF50; }
+.netlogo--coris { background: #006847; }
+.netlogo--free { background: #CD1041; }
+.netlogo--btc { background: #F7931A; color: #fff; }
+.netlogo--usdt { background: #26A17B; }
+.netlogo--eth { background: #627EEA; }
+
+.cell-network {
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* ====================== AGGREGATOR BADGE ====================== */
+.agg {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid;
+}
+.agg--pawapay { background: rgba(34,197,94,0.08); color: var(--green-400); border-color: rgba(34,197,94,0.2); }
+.agg--hub2 { background: rgba(59,130,246,0.08); color: #60a5fa; border-color: rgba(59,130,246,0.2); }
+.agg--feexpay { background: rgba(245,158,11,0.08); color: #fbbf24; border-color: rgba(245,158,11,0.2); }
+.agg--nowpayments { background: rgba(139,92,246,0.08); color: #a78bfa; border-color: rgba(139,92,246,0.2); }
+
+/* ====================== SLIDE-OVER ====================== */
+.slideover {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: 480px;
+  background: var(--bg-surface);
+  border-left: 1px solid var(--bg-border);
+  box-shadow: var(--sh-lg);
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+}
+.slideover__header {
+  padding: var(--sp-5) var(--sp-6);
+  border-bottom: 1px solid var(--bg-border);
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: var(--sp-3);
+}
+.slideover__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+.slideover__footer {
+  padding: var(--sp-4) var(--sp-6);
+  border-top: 1px solid var(--bg-border);
+  display: flex;
+  gap: var(--sp-3);
+  justify-content: flex-end;
+}
+.slideover__section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: var(--sp-3);
+}
+
+/* ====================== MODAL ====================== */
+.scrim {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  display: grid; place-items: center;
+  z-index: 60;
+}
+.modal {
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--r-5);
+  box-shadow: var(--sh-lg);
+  width: 480px;
+  max-width: 92vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+.modal--lg { width: 640px; }
+.modal__header {
+  padding: var(--sp-5) var(--sp-6) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--sp-3);
+}
+.modal__body {
+  padding: var(--sp-5) var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  overflow-y: auto;
+}
+.modal__footer {
+  padding: 0 var(--sp-6) var(--sp-5);
+  display: flex;
+  gap: var(--sp-3);
+  justify-content: flex-end;
+}
+
+/* ====================== TOAST ====================== */
+.toast {
+  position: fixed;
+  right: var(--sp-6);
+  bottom: var(--sp-6);
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-border);
+  border-left: 3px solid var(--green-500);
+  border-radius: var(--r-3);
+  padding: var(--sp-3) var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  box-shadow: var(--sh-md);
+  z-index: 70;
+  min-width: 280px;
+  font-size: var(--fs-body-s);
+}
+
+/* ====================== TIMELINE ====================== */
+.timeline { display: flex; flex-direction: column; gap: var(--sp-3); }
+.tl-item {
+  display: grid;
+  grid-template-columns: 80px 16px 1fr;
+  gap: var(--sp-3);
+  align-items: flex-start;
+  font-size: var(--fs-body-s);
+}
+.tl-item__time { color: var(--text-tertiary); font-family: 'JetBrains Mono', monospace; font-size: 12px; padding-top: 1px; }
+.tl-item__bullet {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--green-500);
+  margin-top: 5px;
+  margin-left: 3px;
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.15);
+  position: relative;
+}
+.tl-item__bullet--neutral {
+  background: var(--text-tertiary);
+  box-shadow: 0 0 0 3px rgba(77,107,96,0.15);
+}
+.tl-item:not(:last-child) .tl-item__bullet::after {
+  content: '';
+  position: absolute;
+  top: 14px; left: 4px;
+  width: 2px; height: calc(100% + 8px);
+  background: var(--bg-border);
+}
+.tl-item__label { color: var(--text-primary); }
+
+/* ====================== DETAIL ROWS ====================== */
+.kv-list {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 12px var(--sp-4);
+  font-size: var(--fs-body-s);
+}
+.kv-list dt { color: var(--text-secondary); }
+.kv-list dd { margin: 0; color: var(--text-primary); }
+.kv-list dd.mono { font-size: 12.5px; }
+
+.amount-row {
+  display: flex; justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--bg-border);
+  font-size: var(--fs-body);
+}
+.amount-row:last-child { border-bottom: none; }
+.amount-row__label { color: var(--text-secondary); }
+.amount-row__value { font-family: 'JetBrains Mono', monospace; }
+.amount-row--total { font-weight: 700; }
+.amount-row--total .amount-row__value { color: var(--green-500); font-size: 16px; }
+.amount-row--deduct .amount-row__value { color: var(--text-secondary); }
+
+/* ====================== SEGMENTED ====================== */
+.seg {
+  display: inline-flex;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: 8px;
+  padding: 3px;
+}
+.seg button {
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  color: var(--text-secondary);
+  font-size: var(--fs-body-s);
+  font-weight: 500;
+}
+.seg button.is-active {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+/* ====================== SWITCH ====================== */
+.switch {
+  width: 36px; height: 20px;
+  background: var(--bg-elevated);
+  border-radius: 999px;
+  position: relative;
+  display: inline-block;
+  border: 1px solid var(--bg-border);
+  transition: all 0.15s;
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  transition: all 0.15s;
+}
+.switch.is-on { background: var(--green-500); border-color: var(--green-500); }
+.switch.is-on::after { left: 18px; background: #fff; }
+
+/* ====================== UTILS ====================== */
+.row { display: flex; align-items: center; gap: var(--sp-3); }
+.col { display: flex; flex-direction: column; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+.gap-5 { gap: 20px; }
+.gap-6 { gap: 24px; }
+.flex { display: flex; }
+.flex-1 { flex: 1; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-success { color: var(--green-500); }
+.text-error { color: var(--error-text); }
+.text-warning { color: var(--warning-text); }
+.text-right { text-align: right; }
+.mt-2 { margin-top: 8px; }
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-6 { margin-bottom: 24px; }
+.grid { display: grid; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.fs-12 { font-size: 12px; }
+.fs-13 { font-size: 13px; }
+.fs-h3 { font-size: var(--fs-h3); }
+.fs-h2 { font-size: var(--fs-h2); }
+.fs-h1 { font-size: var(--fs-h1); }
+.tight { letter-spacing: -0.01em; }
+.tighter { letter-spacing: -0.02em; }
+
+/* ====================== EMPTY STATE ====================== */
+.empty {
+  padding: var(--sp-12) var(--sp-6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.empty__icon {
+  width: 56px; height: 56px;
+  display: grid; place-items: center;
+  background: var(--bg-elevated);
+  border-radius: 14px;
+  color: var(--text-tertiary);
+  margin-bottom: var(--sp-2);
+}
+.empty__title { font-size: var(--fs-h3); font-weight: 600; }
+.empty__body { color: var(--text-secondary); max-width: 320px; }
+</style>
+<style>
+body { background: var(--bg-base); min-width: auto; }
+.lp { overflow-x: hidden; }
+.lp-container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+/* NAV */
+.lp-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(10,15,13,0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--bg-border);
+}
+.lp-nav__inner { display: flex; align-items: center; gap: 32px; height: 64px; }
+.lp-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+.lp-brand__mark { width: 30px; height: 30px; border-radius: 8px; background: linear-gradient(135deg, var(--green-500), var(--green-700)); display: grid; place-items: center; color: var(--text-inverse); font-weight: 800; font-size: 16px; box-shadow: var(--sh-glow); }
+.lp-nav__links { display: flex; gap: 28px; font-size: 14px; color: var(--text-secondary); }
+.lp-nav__links a:hover { color: var(--text-primary); }
+.lp-nav__cta { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+
+/* HERO */
+.lp-hero { position: relative; padding: 96px 0 80px; text-align: center; }
+.lp-hero::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(34,197,94,0.16) 0%, transparent 60%),
+    linear-gradient(rgba(34,197,94,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,0.025) 1px, transparent 1px);
+  background-size: auto, 32px 32px, 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 20%, #000 0%, transparent 80%);
+}
+.lp-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--bg-surface); border: 1px solid var(--bg-border);
+  border-radius: 999px; padding: 6px 14px;
+  font-size: 13px; color: var(--text-secondary); margin-bottom: 28px;
+}
+.lp-eyebrow strong { color: var(--green-400); font-weight: 600; }
+.lp-h1 { font-size: 64px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.02; margin: 0 auto; max-width: 880px; }
+.lp-h1 .grad { background: linear-gradient(120deg, var(--green-400), #7CE8B0); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.lp-sub { font-size: 19px; color: var(--text-secondary); max-width: 600px; margin: 24px auto 0; line-height: 1.55; }
+.lp-hero__cta { display: flex; gap: 14px; justify-content: center; margin-top: 36px; }
+.btn--lg { height: 52px; padding: 0 26px; font-size: 16px; border-radius: 10px; }
+.lp-hero__note { margin-top: 18px; font-size: 13px; color: var(--text-tertiary); }
+
+/* trust bar */
+.lp-trust { padding: 36px 0; border-top: 1px solid var(--bg-border); border-bottom: 1px solid var(--bg-border); margin-top: 72px; }
+.lp-trust__label { text-align: center; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-tertiary); margin-bottom: 24px; }
+.lp-trust__logos { display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; }
+.lp-netbadge { display: flex; align-items: center; gap: 10px; opacity: 0.75; transition: opacity 0.15s; }
+.lp-netbadge:hover { opacity: 1; }
+.lp-netbadge span { font-weight: 700; font-size: 15px; color: var(--text-secondary); }
+
+/* SECTION */
+.lp-section { padding: 96px 0; }
+.lp-sec-head { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+.lp-sec-tag { font-size: 13px; font-weight: 600; color: var(--green-400); letter-spacing: 0.04em; text-transform: uppercase; }
+.lp-sec-title { font-size: 42px; font-weight: 800; letter-spacing: -0.025em; margin: 12px 0 0; line-height: 1.1; }
+.lp-sec-sub { font-size: 17px; color: var(--text-secondary); margin: 16px 0 0; line-height: 1.55; }
+
+/* FEATURES */
+.lp-feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.lp-feat {
+  background: var(--bg-surface); border: 1px solid var(--bg-border);
+  border-radius: 16px; padding: 28px;
+  transition: all 0.2s; position: relative; overflow: hidden;
+}
+.lp-feat:hover { border-color: var(--neutral-600); transform: translateY(-2px); }
+.lp-feat__icon { width: 44px; height: 44px; border-radius: 12px; background: var(--bg-elevated); display: grid; place-items: center; color: var(--green-400); margin-bottom: 18px; }
+.lp-feat__title { font-size: 17px; font-weight: 600; margin: 0 0 8px; }
+.lp-feat__body { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+.lp-feat--wide { grid-column: span 2; }
+
+/* HOW */
+.lp-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; counter-reset: step; }
+.lp-step { position: relative; padding-top: 20px; }
+.lp-step__n { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--green-400); }
+.lp-step__bar { height: 2px; background: var(--bg-border); margin: 12px 0 20px; position: relative; }
+.lp-step__bar::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 32px; background: var(--green-500); border-radius: 2px; }
+.lp-step__title { font-size: 18px; font-weight: 600; margin: 0 0 8px; }
+.lp-step__body { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+/* CODE block */
+.lp-codewrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.lp-code {
+  background: #050a08; border: 1px solid var(--bg-border); border-radius: 16px;
+  overflow: hidden; box-shadow: var(--sh-lg);
+}
+.lp-code__bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--bg-border); }
+.lp-code__dot { width: 11px; height: 11px; border-radius: 50%; }
+.lp-code__tab { margin-left: 12px; font-size: 12px; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; }
+.lp-code pre { margin: 0; padding: 20px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.8; white-space: pre; overflow-x: auto; }
+.c-kw { color: #8B5CF6; } .c-fn { color: var(--green-400); } .c-str { color: #FBBF24; } .c-num { color: #F59E0B; } .c-com { color: var(--text-tertiary); } .c-var { color: #60A5FA; }
+.lp-check-list { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+.lp-check { display: flex; gap: 12px; align-items: flex-start; }
+.lp-check__ic { width: 22px; height: 22px; border-radius: 50%; background: var(--success-bg); display: grid; place-items: center; flex-shrink: 0; margin-top: 1px; }
+.lp-check__t { font-size: 15px; font-weight: 600; }
+.lp-check__b { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+
+/* STATS band */
+.lp-band { background: linear-gradient(180deg, rgba(34,197,94,0.06), transparent); border-top: 1px solid var(--bg-border); border-bottom: 1px solid var(--bg-border); }
+.lp-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 56px 0; }
+.lp-stat { text-align: center; }
+.lp-stat strong { display: block; font-size: 44px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; background: linear-gradient(120deg, var(--green-400), #7CE8B0); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.lp-stat span { font-size: 14px; color: var(--text-secondary); margin-top: 10px; display: block; }
+
+/* COVERAGE */
+.lp-cov-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.lp-cov {
+  background: var(--bg-surface); border: 1px solid var(--bg-border); border-radius: 12px;
+  padding: 16px; text-align: center; transition: all 0.15s;
+}
+.lp-cov:hover { border-color: var(--green-500); background: rgba(34,197,94,0.04); }
+.lp-cov__flag { font-size: 26px; }
+.lp-cov__name { font-size: 12px; font-weight: 500; margin-top: 8px; }
+.lp-cov__net { font-size: 10px; color: var(--text-tertiary); margin-top: 2px; }
+
+/* PRICING */
+.lp-price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+.lp-price { background: var(--bg-surface); border: 1px solid var(--bg-border); border-radius: 18px; padding: 32px; }
+.lp-price--feat { border-color: var(--green-500); background: linear-gradient(180deg, rgba(34,197,94,0.07), var(--bg-surface)); position: relative; box-shadow: var(--sh-glow); }
+.lp-price__badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: var(--green-500); color: var(--text-inverse); font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; }
+.lp-price__name { font-size: 15px; font-weight: 600; color: var(--text-secondary); }
+.lp-price__amt { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; margin: 14px 0 4px; }
+.lp-price__amt small { font-size: 15px; color: var(--text-secondary); font-weight: 500; }
+.lp-price__desc { font-size: 13px; color: var(--text-tertiary); min-height: 36px; }
+.lp-price__list { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
+.lp-price__list li { display: flex; gap: 10px; font-size: 13.5px; color: var(--text-secondary); list-style: none; align-items: flex-start; }
+.lp-price__list svg { flex-shrink: 0; margin-top: 2px; color: var(--green-400); }
+.lp-price ul { padding: 0; margin: 0; }
+
+/* CTA */
+.lp-cta { text-align: center; padding: 96px 0; position: relative; }
+.lp-cta::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(34,197,94,0.12) 0%, transparent 70%); }
+.lp-cta h2 { font-size: 48px; font-weight: 800; letter-spacing: -0.03em; margin: 0 auto; max-width: 640px; line-height: 1.08; }
+.lp-cta p { font-size: 18px; color: var(--text-secondary); margin: 18px auto 0; max-width: 480px; }
+
+/* FOOTER */
+.lp-foot { border-top: 1px solid var(--bg-border); padding: 56px 0 32px; }
+.lp-foot__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
+.lp-foot__col h4 { font-size: 13px; font-weight: 600; margin: 0 0 14px; }
+.lp-foot__col a { display: block; font-size: 13.5px; color: var(--text-secondary); padding: 5px 0; }
+.lp-foot__col a:hover { color: var(--text-primary); }
+.lp-foot__bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--bg-border); font-size: 13px; color: var(--text-tertiary); }
+
+@media (max-width: 900px) {
+  .lp-nav__links { display: none; }
+  .lp-h1 { font-size: 40px; }
+  .lp-feat-grid, .lp-steps, .lp-price-grid { grid-template-columns: 1fr; }
+  .lp-feat--wide { grid-column: span 1; }
+  .lp-codewrap { grid-template-columns: 1fr; }
+  .lp-stats { grid-template-columns: repeat(2, 1fr); }
+  .lp-cov-grid { grid-template-columns: repeat(3, 1fr); }
+  .lp-foot__grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="lp" data-screen-label="LP Landing Pro">
+
+  <!-- NAV -->
+  <nav class="lp-nav">
+    <div class="lp-container lp-nav__inner">
+      <div class="lp-brand"><div class="lp-brand__mark">W</div>WouraPay</div>
+      <div class="lp-nav__links">
+        <a href="#features">Produit</a>
+        <a href="#coverage">Couverture</a>
+        <a href="#dev">Développeurs</a>
+        <a href="#pricing">Tarifs</a>
+        <a href="merchant-documentation.html">Docs</a>
+      </div>
+      <div class="lp-nav__cta">
+        <a href="merchant-auth.html" class="btn btn--ghost btn--sm">Se connecter</a>
+        <a href="merchant-onboarding.html" class="btn btn--primary btn--sm">Créer un compte</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="lp-hero">
+    <div class="lp-container">
+      <div class="lp-eyebrow">🌍 <strong>20+ pays</strong> · Mobile Money & Crypto · une seule API</div>
+      <h1 class="lp-h1">Encaissez partout en Afrique, <span class="grad">en une intégration.</span></h1>
+      <p class="lp-sub">WouraPay agrège MTN, Moov, Orange, Wave, M-Pesa et la crypto sur tout le continent. Liens de paiement, API, reversements — sans gérer chaque opérateur séparément.</p>
+      <div class="lp-hero__cta">
+        <a href="merchant-onboarding.html" class="btn btn--primary btn--lg">Commencer gratuitement</a>
+        <a href="#dev" class="btn btn--secondary btn--lg">Voir la documentation</a>
+      </div>
+      <div class="lp-hero__note">Sans frais d'installation · Sandbox immédiat · Mise en production après KYC</div>
+    </div>
+
+    <!-- trust -->
+    <div class="lp-trust">
+      <div class="lp-container">
+        <div class="lp-trust__label">Tous les moyens de paiement africains, réunis</div>
+        <div class="lp-trust__logos">
+          <div class="lp-netbadge"><div class="netlogo netlogo--mtn">MTN</div><span>MTN</span></div>
+          <div class="lp-netbadge"><div class="netlogo netlogo--moov">M</div><span>Moov</span></div>
+          <div class="lp-netbadge"><div class="netlogo netlogo--orange">O</div><span>Orange</span></div>
+          <div class="lp-netbadge"><div class="netlogo netlogo--wave">W</div><span>Wave</span></div>
+          <div class="lp-netbadge"><div class="netlogo netlogo--mpesa">M</div><span>M-Pesa</span></div>
+          <div class="lp-netbadge"><div class="netlogo netlogo--usdt">U</div><span>USDT</span></div>
+          <div class="lp-netbadge"><div class="netlogo netlogo--btc">B</div><span>Bitcoin</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- FEATURES -->
+  <section class="lp-section" id="features">
+    <div class="lp-container">
+      <div class="lp-sec-head">
+        <div class="lp-sec-tag">Pourquoi WouraPay</div>
+        <h2 class="lp-sec-title">Une plateforme, tous les paiements</h2>
+        <p class="lp-sec-sub">Arrêtez d'intégrer chaque opérateur un par un. WouraPay route intelligemment chaque transaction vers le bon agrégateur.</p>
+      </div>
+      <div class="lp-feat-grid">
+        <div class="lp-feat lp-feat--wide">
+          <div class="lp-feat__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg></div>
+          <h3 class="lp-feat__title">Couverture panafricaine, une seule API</h3>
+          <p class="lp-feat__body">UEMOA, Nigeria, Kenya, Rwanda, Ghana, Cameroun… Plus de 40 opérateurs Mobile Money et 220+ devises crypto, accessibles via un endpoint unique. Le routing vers PawaPay, Hub2, FeexPay ou NowPayments est automatique et optimisé pour le taux de succès.</p>
+        </div>
+        <div class="lp-feat">
+          <div class="lp-feat__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+          <h3 class="lp-feat__title">Liens de paiement</h3>
+          <p class="lp-feat__body">Créez un lien ou un QR code en 10 secondes, sans écrire une ligne de code. Idéal pour WhatsApp, réseaux sociaux et factures.</p>
+        </div>
+        <div class="lp-feat">
+          <div class="lp-feat__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+          <h3 class="lp-feat__title">Reversements instantanés</h3>
+          <p class="lp-feat__body">Reversez vers Mobile Money, compte bancaire ou wallet crypto. Suivi en temps réel de chaque payout.</p>
+        </div>
+        <div class="lp-feat">
+          <div class="lp-feat__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></div>
+          <h3 class="lp-feat__title">Multi-devises</h3>
+          <p class="lp-feat__body">XOF, NGN, KES, GHS, USDT, BTC… Encaissez dans la devise du client, gérez vos soldes par wallet.</p>
+        </div>
+        <div class="lp-feat">
+          <div class="lp-feat__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h3 class="lp-feat__title">Taux de succès optimisé</h3>
+          <p class="lp-feat__body">Retry intelligent, bascule d'agrégateur en cas de panne, monitoring continu. 94%+ de réussite en moyenne.</p>
+        </div>
+        <div class="lp-feat">
+          <div class="lp-feat__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <h3 class="lp-feat__title">Sécurité & conformité</h3>
+          <p class="lp-feat__body">Webhooks signés HMAC, chiffrement AES-256, 2FA, filtrage IP. KYC intégré pour vos marchands.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <div class="lp-band">
+    <div class="lp-container">
+      <div class="lp-stats">
+        <div class="lp-stat"><strong>20+</strong><span>pays couverts</span></div>
+        <div class="lp-stat"><strong>40+</strong><span>opérateurs Mobile Money</span></div>
+        <div class="lp-stat"><strong>94%</strong><span>taux de succès moyen</span></div>
+        <div class="lp-stat"><strong>~2s</strong><span>latence médiane</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="lp-section">
+    <div class="lp-container">
+      <div class="lp-sec-head">
+        <div class="lp-sec-tag">Comment ça marche</div>
+        <h2 class="lp-sec-title">En production en 3 étapes</h2>
+      </div>
+      <div class="lp-steps">
+        <div class="lp-step">
+          <div class="lp-step__n">01</div>
+          <div class="lp-step__bar"></div>
+          <h3 class="lp-step__title">Créez votre compte</h3>
+          <p class="lp-step__body">Inscription en 2 minutes. Testez immédiatement en sandbox pendant que votre KYC est validé (24 h en moyenne).</p>
+        </div>
+        <div class="lp-step">
+          <div class="lp-step__n">02</div>
+          <div class="lp-step__bar"></div>
+          <h3 class="lp-step__title">Intégrez</h3>
+          <p class="lp-step__body">Lien de paiement sans code, ou API REST avec nos SDK Node, Python et PHP. Webhooks pour la réconciliation automatique.</p>
+        </div>
+        <div class="lp-step">
+          <div class="lp-step__n">03</div>
+          <div class="lp-step__bar"></div>
+          <h3 class="lp-step__title">Encaissez & reversez</h3>
+          <p class="lp-step__body">Vos clients paient avec leur moyen préféré. Vous suivez tout depuis le dashboard et reversez quand vous voulez.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEV / CODE -->
+  <section class="lp-section" id="dev" style="padding-top:0">
+    <div class="lp-container">
+      <div class="lp-codewrap">
+        <div>
+          <div class="lp-sec-tag">Pensé pour les développeurs</div>
+          <h2 class="lp-sec-title" style="font-size:36px;text-align:left">Une API claire,<br/>une doc complète</h2>
+          <div class="lp-check-list">
+            <div class="lp-check">
+              <div class="lp-check__ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--green-500)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div><div class="lp-check__t">REST + Webhooks signés</div><div class="lp-check__b">Endpoints prévisibles, réponses JSON, signature HMAC-SHA256.</div></div>
+            </div>
+            <div class="lp-check">
+              <div class="lp-check__ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--green-500)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div><div class="lp-check__t">SDK Node, Python, PHP</div><div class="lp-check__b">Installez, configurez votre clé, encaissez en quelques lignes.</div></div>
+            </div>
+            <div class="lp-check">
+              <div class="lp-check__ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--green-500)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div><div class="lp-check__t">Sandbox illimité</div><div class="lp-check__b">Simulez succès, échecs et timeouts avant la mise en production.</div></div>
+            </div>
+          </div>
+          <a href="merchant-documentation.html" class="btn btn--secondary" style="margin-top:28px">Lire la documentation →</a>
+        </div>
+        <div class="lp-code">
+          <div class="lp-code__bar">
+            <div class="lp-code__dot" style="background:#FF5F56"></div>
+            <div class="lp-code__dot" style="background:#FFBD2E"></div>
+            <div class="lp-code__dot" style="background:#27C93F"></div>
+            <div class="lp-code__tab">payment.js</div>
+          </div>
+<pre><span class="c-com">// Créer un lien de paiement</span>
+<span class="c-kw">const</span> link = <span class="c-kw">await</span> <span class="c-var">woura</span>.<span class="c-fn">paymentLinks</span>.<span class="c-fn">create</span>({
+  amount: <span class="c-num">5000</span>,
+  currency: <span class="c-str">"XOF"</span>,
+  description: <span class="c-str">"Maillot CI"</span>,
+  networks: [<span class="c-str">"MTN_BJ"</span>, <span class="c-str">"WAVE_CI"</span>],
+  callback_url: <span class="c-str">"https://ma-boutique.ci/hook"</span>
+});
+
+<span class="c-var">console</span>.<span class="c-fn">log</span>(link.url);
+<span class="c-com">// → https://pay.wourapay.com/p/8aF2k</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section class="lp-section" id="coverage" style="padding-top:0">
+    <div class="lp-container">
+      <div class="lp-sec-head">
+        <div class="lp-sec-tag">Couverture</div>
+        <h2 class="lp-sec-title">Présent dans 20+ pays</h2>
+        <p class="lp-sec-sub">De l'Afrique de l'Ouest à l'Est, en passant par le Nigeria et le Ghana.</p>
+      </div>
+      <div class="lp-cov-grid">
+        <div class="lp-cov"><div class="lp-cov__flag">🇧🇯</div><div class="lp-cov__name">Bénin</div><div class="lp-cov__net">MTN · Moov · Coris</div></div>
+        <div class="lp-cov"><div class="lp-cov__flag">🇨🇮</div><div class="lp-cov__name">Côte d'Ivoire</div><div class="lp-cov__net">MTN · Orange · Wave</div></div>
+        <div class="lp-cov"><div class="lp-cov__flag">🇸🇳</div><div class="lp-cov__name">Sénégal</div><div class="lp-cov__net">Orange · Free · Wave</div></div>
+        <div class="lp-cov"><div class="lp-cov__flag">🇹🇬</div><div class="lp-cov__name">Togo</div><div class="lp-cov__net">MTN · Moov</div></div>
+        <div class="lp-cov"><div class="lp-cov__flag">🇲🇱</div><div class="lp-cov__name">Mali</div><div class="lp-cov__net">Orange · Moov</div></div>
+        <div class="lp-cov"><div class="lp-cov__flag">🇧🇫</div><div class="lp-cov__name">Burkina</div><div class="lp-cov__net">Orange · Moov</div></div>
+        <div class="lp-cov"><div class="lp-cov__flag">🇳🇬</div><div class="lp-cov__name">Nigeria</div><div class="lp-cov__net">MTN · Airtel</div></div>
+        <div class="lp-cov"><div class="lp-cov__flag">🇬🇭</div><div class="lp-cov__name">Ghana</div><div class="lp-cov__net">MTN · Telecel</div></div>
+        <div class="lp-cov"><div class="lp-cov__flag">🇨🇲</div><div class="lp-cov__name">Cameroun</div><div class="lp-cov__net">MTN · Orange</div></div>
+        <div class="lp-cov"><div class="lp-cov__flag">🇰🇪</div><div class="lp-cov__name">Kenya</div><div class="lp-cov__net">M-Pesa · Airtel</div></div>
+        <div class="lp-cov"><div class="lp-cov__flag">🇷🇼</div><div class="lp-cov__name">Rwanda</div><div class="lp-cov__net">MTN · Airtel</div></div>
+        <div class="lp-cov"><div class="lp-cov__flag">🌍</div><div class="lp-cov__name">+ 9 pays</div><div class="lp-cov__net">Voir la liste</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="lp-section" id="pricing" style="padding-top:0">
+    <div class="lp-container">
+      <div class="lp-sec-head">
+        <div class="lp-sec-tag">Tarifs</div>
+        <h2 class="lp-sec-title">Simple et transparent</h2>
+        <p class="lp-sec-sub">Pas de frais cachés. Vous payez un pourcentage par transaction réussie, c'est tout.</p>
+      </div>
+      <div class="lp-price-grid">
+        <div class="lp-price">
+          <div class="lp-price__name">Starter</div>
+          <div class="lp-price__amt">2,9%<small> / transaction</small></div>
+          <div class="lp-price__desc">Pour démarrer et tester votre activité.</div>
+          <ul class="lp-price__list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Liens de paiement illimités</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Tous les réseaux Mobile Money</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Dashboard & API</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Support email</li>
+          </ul>
+          <a href="merchant-onboarding.html" class="btn btn--secondary btn--block">Commencer</a>
+        </div>
+        <div class="lp-price lp-price--feat">
+          <div class="lp-price__badge">POPULAIRE</div>
+          <div class="lp-price__name">Business</div>
+          <div class="lp-price__amt">1,9%<small> / transaction</small></div>
+          <div class="lp-price__desc">Pour les volumes en croissance.</div>
+          <ul class="lp-price__list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Tout du plan Starter</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Reversements crypto</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Comptes d'équipe & rôles</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Support prioritaire</li>
+          </ul>
+          <a href="merchant-onboarding.html" class="btn btn--primary btn--block">Choisir Business</a>
+        </div>
+        <div class="lp-price">
+          <div class="lp-price__name">Enterprise</div>
+          <div class="lp-price__amt" style="font-size:30px;white-space:nowrap">Sur mesure</div>
+          <div class="lp-price__desc">Volumes élevés et besoins spécifiques.</div>
+          <ul class="lp-price__list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Tarifs dégressifs négociés</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>SLA & uptime garanti</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Account manager dédié</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Intégration accompagnée</li>
+          </ul>
+          <a href="#" class="btn btn--secondary btn--block">Nous contacter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="lp-cta">
+    <div class="lp-container">
+      <h2>Prêt à encaisser sans frontières ?</h2>
+      <p>Créez votre compte WouraPay et acceptez votre premier paiement aujourd'hui.</p>
+      <div class="lp-hero__cta">
+        <a href="merchant-onboarding.html" class="btn btn--primary btn--lg">Créer un compte gratuit</a>
+        <a href="merchant-auth.html" class="btn btn--secondary btn--lg">Se connecter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="lp-foot">
+    <div class="lp-container">
+      <div class="lp-foot__grid">
+        <div>
+          <div class="lp-brand" style="margin-bottom:14px"><div class="lp-brand__mark">W</div>WouraPay</div>
+          <p class="fs-13 text-secondary" style="max-width:280px;line-height:1.6;margin:0">L'orchestrateur de paiement panafricain. Mobile Money & crypto, une seule intégration.</p>
+        </div>
+        <div class="lp-foot__col">
+          <h4>Produit</h4>
+          <a href="#features">Fonctionnalités</a>
+          <a href="#coverage">Couverture</a>
+          <a href="#pricing">Tarifs</a>
+          <a href="merchant-liens.html">Liens de paiement</a>
+        </div>
+        <div class="lp-foot__col">
+          <h4>Développeurs</h4>
+          <a href="merchant-documentation.html">Documentation</a>
+          <a href="merchant-api.html">Clés API</a>
+          <a href="#">SDK</a>
+          <a href="#">Statut</a>
+        </div>
+        <div class="lp-foot__col">
+          <h4>Entreprise</h4>
+          <a href="#">À propos</a>
+          <a href="#">Contact</a>
+          <a href="#">CGU</a>
+          <a href="#">Confidentialité</a>
+        </div>
+      </div>
+      <div class="lp-foot__bottom">
+        <span>© 2026 WouraPay. Tous droits réservés.</span>
+        <span class="row gap-3"><a href="admin-auth.html" class="text-tertiary">Console Admin</a> · <span>Fait en Afrique 🌍</span></span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

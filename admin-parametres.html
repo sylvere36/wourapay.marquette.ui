@@ -1065,18 +1065,76 @@ a { color: inherit; text-decoration: none; }
 
     <div class="grid" style="grid-template-columns: 220px 1fr; gap:24px; align-items:flex-start">
       <div class="side-tabs">
-        <div class="side-tab">Profil</div>
-        <div class="side-tab">Plateforme</div>
-        <div class="side-tab">Notifications</div>
-        <div class="side-tab is-active">Sécurité</div>
-        <div class="side-tab">Facturation</div>
-        <div class="side-tab">Apparence</div>
-        <div class="side-tab">Domaines & DNS</div>
-        <div class="side-tab">Webhooks</div>
+        <div class="side-tab is-active" data-st="profil" onclick="stShow(event,'profil')">Profil</div>
+        <div class="side-tab" data-st="plateforme" onclick="stShow(event,'plateforme')">Plateforme</div>
+        <div class="side-tab" data-st="notifications" onclick="stShow(event,'notifications')">Notifications</div>
+        <div class="side-tab" data-st="securite" onclick="stShow(event,'securite')">Sécurité</div>
+        <div class="side-tab" data-st="facturation" onclick="stShow(event,'facturation')">Facturation</div>
+        <div class="side-tab" data-st="apparence" onclick="stShow(event,'apparence')">Apparence</div>
+        <div class="side-tab" data-st="domaines" onclick="stShow(event,'domaines')">Domaines & DNS</div>
+        <div class="side-tab" data-st="webhooks" onclick="stShow(event,'webhooks')">Webhooks</div>
       </div>
 
       <div class="col gap-6" style="max-width:680px">
 
+        <!-- PANEL Profil -->
+        <div class="st-panel" data-st-panel="profil">
+          <div class="card card--lg">
+            <h2 class="page-h3">Profil administrateur</h2>
+            <p class="card__sub mt-2">Informations de votre compte interne</p>
+            <div class="col gap-4 mt-6">
+              <div class="grid-2">
+                <div class="field"><label class="field__label">Prénom</label><input class="input" value="Sylvère"/></div>
+                <div class="field"><label class="field__label">Nom</label><input class="input" value="Tchassanti"/></div>
+              </div>
+              <div class="field"><label class="field__label">Email pro</label><input class="input" value="sylvere@wourapay.com"/></div>
+              <div class="field"><label class="field__label">Rôle</label><input class="input" value="Super Admin" disabled style="opacity:.6"/></div>
+            </div>
+            <div class="row gap-3 mt-6" style="justify-content:flex-end"><button class="btn btn--ghost">Annuler</button><button class="btn btn--primary">Enregistrer</button></div>
+          </div>
+        </div>
+
+        <!-- PANEL Plateforme -->
+        <div class="st-panel" data-st-panel="plateforme" style="display:none">
+          <div class="card card--lg">
+            <h2 class="page-h3">Paramètres de la plateforme</h2>
+            <p class="card__sub mt-2">Configuration globale WouraPay</p>
+            <div class="col gap-4 mt-6">
+              <div class="field"><label class="field__label">Nom commercial</label><input class="input" value="WouraPay"/></div>
+              <div class="grid-2">
+                <div class="field"><label class="field__label">Devise de présentation</label><select class="select"><option>XOF</option><option>USD</option><option>EUR</option></select></div>
+                <div class="field"><label class="field__label">Fuseau par défaut</label><select class="select"><option>(GMT+0) Cotonou</option><option>(GMT+0) Abidjan</option></select></div>
+              </div>
+              <div class="row" style="justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid var(--bg-border)"><div><div class="font-semibold fs-13">Mode maintenance</div><div class="fs-12 text-secondary">Bloque l'accès marchand temporairement</div></div><div class="switch"></div></div>
+              <div class="row" style="justify-content:space-between;align-items:center"><div><div class="font-semibold fs-13">Inscriptions ouvertes</div><div class="fs-12 text-secondary">Autoriser de nouveaux marchands</div></div><div class="switch is-on"></div></div>
+              <div class="row" style="justify-content:space-between;align-items:center"><div><div class="font-semibold fs-13">KYC obligatoire avant live</div><div class="fs-12 text-secondary">Sandbox accessible sans KYC</div></div><div class="switch is-on"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL Notifications -->
+        <div class="st-panel" data-st-panel="notifications" style="display:none">
+          <div class="card card--lg">
+            <h2 class="page-h3">Notifications de l'équipe</h2>
+            <p class="card__sub mt-2">Quels événements alertent l'équipe interne</p>
+            <div class="col gap-4 mt-6">
+              <div class="row" style="justify-content:space-between;align-items:center"><div><div class="font-semibold fs-13">Reversement &gt; seuil</div><div class="fs-12 text-secondary">Approbation manuelle requise</div></div><div class="switch is-on"></div></div>
+              <div class="row" style="justify-content:space-between;align-items:center"><div><div class="font-semibold fs-13">Taux d'échec élevé</div><div class="fs-12 text-secondary">Alerte agrégateur</div></div><div class="switch is-on"></div></div>
+              <div class="row" style="justify-content:space-between;align-items:center"><div><div class="font-semibold fs-13">Nouveau litige / chargeback</div><div class="fs-12 text-secondary">Email + Slack</div></div><div class="switch is-on"></div></div>
+              <div class="row" style="justify-content:space-between;align-items:center"><div><div class="font-semibold fs-13">Récapitulatif quotidien</div><div class="fs-12 text-secondary">Bilan envoyé à 21h</div></div><div class="switch"></div></div>
+            </div>
+            <div class="mt-6" style="padding-top:16px;border-top:1px solid var(--bg-border)">
+              <div class="fs-12 text-tertiary mb-3" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:600">Canaux</div>
+              <div class="col gap-2">
+                <div class="row gap-3" style="padding:10px 12px;background:var(--bg-elevated);border-radius:8px"><span class="fs-13" style="flex:1">📧 ops@wourapay.com</span><span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>actif</span></div>
+                <div class="row gap-3" style="padding:10px 12px;background:var(--bg-elevated);border-radius:8px"><span class="fs-13" style="flex:1">💬 Slack #alerts</span><span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>actif</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL Sécurité -->
+        <div class="st-panel" data-st-panel="securite" style="display:none">
         <div class="card card--lg">
           <h2 class="page-h3">Authentification</h2>
           <p class="card__sub mt-2">Vos accès personnels au panneau admin</p>
@@ -1147,10 +1205,88 @@ a { color: inherit; text-decoration: none; }
           </div>
           <div class="mt-6"><button class="btn btn--danger btn--sm">Déconnecter toutes les autres sessions</button></div>
         </div>
+        </div>
+        <!-- /PANEL Sécurité -->
+
+        <!-- PANEL Facturation -->
+        <div class="st-panel" data-st-panel="facturation" style="display:none">
+          <div class="card card--lg">
+            <h2 class="page-h3">Facturation des agrégateurs</h2>
+            <p class="card__sub mt-2">Comptes payeurs et prélèvements</p>
+            <div class="col gap-4 mt-6">
+              <div class="row gap-3" style="padding:12px 14px;background:var(--bg-elevated);border-radius:10px;align-items:center"><div class="agg agg--pawapay">PawaPay</div><div class="flex-1 fs-13">Prélèvement mensuel · compte EUR</div><span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>à jour</span></div>
+              <div class="row gap-3" style="padding:12px 14px;background:var(--bg-elevated);border-radius:10px;align-items:center"><div class="agg agg--hub2">Hub2</div><div class="flex-1 fs-13">Prélèvement mensuel · compte XOF</div><span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>à jour</span></div>
+              <div class="row gap-3" style="padding:12px 14px;background:var(--bg-elevated);border-radius:10px;align-items:center"><div class="agg agg--feexpay">FeexPay</div><div class="flex-1 fs-13">Par transaction · décompte wallet</div><span class="badge-st badge-st--warning" style="height:18px"><span class="badge-st__dot"></span>facture due</span></div>
+            </div>
+          </div>
+          <div class="card card--lg mt-6">
+            <h2 class="page-h3">Coordonnées de facturation</h2>
+            <div class="col gap-4 mt-6">
+              <div class="field"><label class="field__label">Raison sociale</label><input class="input" value="WouraPay SAS"/></div>
+              <div class="grid-2"><div class="field"><label class="field__label">N° TVA / NIF</label><input class="input mono" value="CI-2024-WP-0042"/></div><div class="field"><label class="field__label">Email comptable</label><input class="input" value="finance@wourapay.com"/></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL Apparence -->
+        <div class="st-panel" data-st-panel="apparence" style="display:none">
+          <div class="card card--lg">
+            <h2 class="page-h3">Apparence de la console</h2>
+            <p class="card__sub mt-2">Thème et personnalisation</p>
+            <div class="col gap-4 mt-6">
+              <div class="field"><label class="field__label">Thème</label><div class="seg" style="align-self:flex-start"><button>Clair</button><button class="is-active">Sombre</button><button>Auto</button></div></div>
+              <div class="field"><label class="field__label">Couleur d'accent</label>
+                <div class="row gap-2" style="margin-top:4px">
+                  <div style="width:32px;height:32px;border-radius:8px;background:#22C55E;border:2px solid var(--text-primary)"></div>
+                  <div style="width:32px;height:32px;border-radius:8px;background:#3B82F6"></div>
+                  <div style="width:32px;height:32px;border-radius:8px;background:#8B5CF6"></div>
+                  <div style="width:32px;height:32px;border-radius:8px;background:#F59E0B"></div>
+                </div>
+              </div>
+              <div class="row" style="justify-content:space-between;align-items:center"><div><div class="font-semibold fs-13">Densité compacte</div><div class="fs-12 text-secondary">Réduit les espacements des tableaux</div></div><div class="switch"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL Domaines & DNS -->
+        <div class="st-panel" data-st-panel="domaines" style="display:none">
+          <div class="card card--lg">
+            <h2 class="page-h3">Domaines & DNS</h2>
+            <p class="card__sub mt-2">Domaines personnalisés pour les pages de paiement</p>
+            <div class="col gap-2 mt-6">
+              <div class="row gap-3" style="padding:12px 14px;background:var(--bg-elevated);border-radius:10px;align-items:center"><span class="mono fs-13" style="flex:1">pay.wourapay.com</span><span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>vérifié · SSL actif</span></div>
+              <div class="row gap-3" style="padding:12px 14px;background:var(--bg-elevated);border-radius:10px;align-items:center"><span class="mono fs-13" style="flex:1">api.wourapay.com</span><span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>vérifié · SSL actif</span></div>
+              <div class="row gap-3" style="padding:12px 14px;background:var(--bg-elevated);border-radius:10px;align-items:center"><span class="mono fs-13" style="flex:1">checkout.partenaire.ci</span><span class="badge-st badge-st--warning" style="height:18px"><span class="badge-st__dot"></span>DNS en attente</span></div>
+              <button class="btn btn--ghost btn--sm" style="align-self:flex-start">+ Ajouter un domaine</button>
+            </div>
+            <div class="mt-6" style="padding:12px 14px;background:#050a08;border:1px solid var(--bg-border);border-radius:8px"><div class="fs-12 text-tertiary mb-3">Enregistrement CNAME requis</div><div class="mono fs-12">checkout.partenaire.ci → cname.wourapay.com</div></div>
+          </div>
+        </div>
+
+        <!-- PANEL Webhooks -->
+        <div class="st-panel" data-st-panel="webhooks" style="display:none">
+          <div class="card card--lg">
+            <h2 class="page-h3">Webhooks plateforme</h2>
+            <p class="card__sub mt-2">Endpoints internes notifiés des événements système</p>
+            <div class="col gap-2 mt-6">
+              <div class="row gap-3" style="padding:12px 14px;background:var(--bg-elevated);border-radius:10px;align-items:center"><span class="mono fs-13" style="flex:1">ops.wourapay.com/hook</span><span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>200</span><button class="btn btn--ghost btn--xs">Tester</button></div>
+              <div class="row gap-3" style="padding:12px 14px;background:var(--bg-elevated);border-radius:10px;align-items:center"><span class="mono fs-13" style="flex:1">monitoring.wourapay.com/in</span><span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>200</span><button class="btn btn--ghost btn--xs">Tester</button></div>
+              <button class="btn btn--ghost btn--sm" style="align-self:flex-start">+ Ajouter un endpoint</button>
+            </div>
+            <div class="mt-6"><a href="admin-webhooks.html" class="btn btn--secondary btn--sm">Voir les livraisons →</a></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
 </div>
+<script>
+function stShow(e, id) {
+  document.querySelectorAll('.st-panel').forEach(p => p.style.display = p.dataset.stPanel === id ? '' : 'none');
+  document.querySelectorAll('.side-tab[data-st]').forEach(t => t.classList.toggle('is-active', t.dataset.st === id));
+}
+</script>
 <script>/* WouraPay shared shell — renders sidebar + topbar from data attrs */
 (function () {
   const I = {

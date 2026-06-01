@@ -1159,7 +1159,7 @@ a { color: inherit; text-decoration: none; }
 
         <div class="fs-12 text-tertiary" style="text-transform:uppercase;letter-spacing:0.08em;font-weight:700;margin-top:4px">Réseaux disponibles · 4</div>
 
-        <!-- MTN -->
+        <!-- MTN — multi-agrégateur -->
         <div class="network-row">
           <div class="network-row__header">
             <div class="netlogo netlogo--mtn" style="width:32px;height:32px;border-radius:8px;font-size:11px">MTN</div>
@@ -1167,17 +1167,37 @@ a { color: inherit; text-decoration: none; }
               <div class="row gap-2" style="align-items:center">
                 <span style="font-size:15px;font-weight:600">MTN Mobile Money</span>
                 <span class="tag mono fs-12">MTN_BJ</span>
+                <span class="tag" style="background:var(--info-bg);color:var(--info-text);border-color:rgba(59,130,246,0.2)">2 agrégateurs</span>
               </div>
-              <div class="fs-12 text-secondary">Collect & Payout · Auto-routing actif</div>
+              <div class="fs-12 text-secondary">Collect &amp; Payout · bascule possible entre agrégateurs</div>
             </div>
             <span class="badge-st badge-st--success"><span class="badge-st__dot"></span>Actif</span>
             <button class="btn btn--secondary btn--xs">Éditer</button>
           </div>
           <div class="network-row__meta">
-            <div class="meta-cell"><div class="meta-label">Agrégateur</div><div class="meta-value"><span class="agg agg--pawapay">PawaPay</span> · MTN_MOMO_BEN</div></div>
+            <div class="meta-cell"><div class="meta-label">Agrégateur actif</div><div class="meta-value"><span class="agg agg--pawapay">PawaPay</span> · MTN_MOMO_BEN</div></div>
             <div class="meta-cell"><div class="meta-label">Frais total</div><div class="meta-value mono">2,70% <span class="text-secondary">(2,20 + 0,50)</span></div></div>
             <div class="meta-cell"><div class="meta-label">Min / Max</div><div class="meta-value mono">100 → 2 000 000</div></div>
             <div class="meta-cell"><div class="meta-label">Payout</div><div class="meta-value text-success">✓ Supporté</div></div>
+          </div>
+          <!-- Aggregator routing switch -->
+          <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--bg-border)">
+            <div class="fs-12 text-tertiary mb-3" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:600">Routing agrégateur · choisissez lequel encaisse ce réseau</div>
+            <div class="col gap-2">
+              <label class="row gap-3" style="padding:10px 12px;border:1px solid var(--green-500);background:rgba(34,197,94,0.05);border-radius:10px;cursor:pointer;align-items:center">
+                <input type="radio" name="mtn_bj_agg" checked/>
+                <span class="agg agg--pawapay">PawaPay</span>
+                <div class="flex-1 fs-13"><span class="text-secondary">MTN_MOMO_BEN ·</span> 2,70% · succès 96,4% · P95 1,82s</div>
+                <span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>Actif</span>
+              </label>
+              <label class="row gap-3" style="padding:10px 12px;border:1px solid var(--bg-border);border-radius:10px;cursor:pointer;align-items:center">
+                <input type="radio" name="mtn_bj_agg"/>
+                <span class="agg agg--hub2">Hub2</span>
+                <div class="flex-1 fs-13"><span class="text-secondary">mtn-bj ·</span> 2,80% · succès 93,1% · P95 2,2s</div>
+                <button class="btn btn--secondary btn--xs">Basculer ici</button>
+              </label>
+            </div>
+            <div class="fs-12 text-tertiary mt-3">Bascule à chaud · les transactions en cours terminent sur l'agrégateur actuel.</div>
           </div>
         </div>
 

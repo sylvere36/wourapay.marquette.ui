@@ -1076,30 +1076,31 @@ a { color: inherit; text-decoration: none; }
 
       <div class="doc-sidebar">
         <div class="doc-section-title">Premiers pas</div>
-        <a class="doc-link is-active">Introduction</a>
-        <a class="doc-link">Authentification</a>
-        <a class="doc-link">Sandbox & Live</a>
-        <a class="doc-link">Devises & pays</a>
+        <a class="doc-link is-active" data-doc="introduction" onclick="docShow(event,'introduction')">Introduction</a>
+        <a class="doc-link" data-doc="auth" onclick="docShow(event,'auth')">Authentification</a>
+        <a class="doc-link" data-doc="sandbox" onclick="docShow(event,'sandbox')">Sandbox &amp; Live</a>
+        <a class="doc-link" data-doc="devises" onclick="docShow(event,'devises')">Devises &amp; pays</a>
         <div class="doc-section-title">Encaissement</div>
-        <a class="doc-link">Liens de paiement</a>
-        <a class="doc-link">API direct (sans lien)</a>
-        <a class="doc-link">Webhooks</a>
-        <a class="doc-link">Signature HMAC</a>
+        <a class="doc-link" data-doc="liens" onclick="docShow(event,'liens')">Liens de paiement</a>
+        <a class="doc-link" data-doc="apidirect" onclick="docShow(event,'apidirect')">API direct (sans lien)</a>
+        <a class="doc-link" data-doc="webhooks" onclick="docShow(event,'webhooks')">Webhooks</a>
+        <a class="doc-link" data-doc="hmac" onclick="docShow(event,'hmac')">Signature HMAC</a>
         <div class="doc-section-title">Reversement</div>
-        <a class="doc-link">Vers Mobile Money</a>
-        <a class="doc-link">Vers compte bancaire</a>
-        <a class="doc-link">Vers crypto</a>
+        <a class="doc-link" data-doc="payoutmomo" onclick="docShow(event,'payoutmomo')">Vers Mobile Money</a>
+        <a class="doc-link" data-doc="payoutbank" onclick="docShow(event,'payoutbank')">Vers compte bancaire</a>
+        <a class="doc-link" data-doc="payoutcrypto" onclick="docShow(event,'payoutcrypto')">Vers crypto</a>
         <div class="doc-section-title">SDKs</div>
-        <a class="doc-link">JavaScript</a>
-        <a class="doc-link">Python</a>
-        <a class="doc-link">PHP</a>
+        <a class="doc-link" data-doc="sdkjs" onclick="docShow(event,'sdkjs')">JavaScript</a>
+        <a class="doc-link" data-doc="sdkpython" onclick="docShow(event,'sdkpython')">Python</a>
+        <a class="doc-link" data-doc="sdkphp" onclick="docShow(event,'sdkphp')">PHP</a>
         <div class="doc-section-title">Ressources</div>
-        <a class="doc-link">Codes d'erreur</a>
-        <a class="doc-link">Limites & rate limits</a>
-        <a class="doc-link">Changelog</a>
+        <a class="doc-link" data-doc="erreurs" onclick="docShow(event,'erreurs')">Codes d'erreur</a>
+        <a class="doc-link" data-doc="limites" onclick="docShow(event,'limites')">Limites &amp; rate limits</a>
+        <a class="doc-link" data-doc="changelog" onclick="docShow(event,'changelog')">Changelog</a>
       </div>
 
       <div class="doc" style="max-width:780px">
+        <div class="doc-panel" data-doc-panel="introduction">
         <div class="row gap-2 mb-3" style="font-size:12px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.08em;font-weight:600"><span>Documentation</span><span>·</span><span>v1.2</span><span>·</span><span>Mis à jour 24 mai 2026</span></div>
         <h1>Bienvenue dans WouraPay</h1>
         <p>WouraPay est un orchestrateur de paiement qui agrège Mobile Money et crypto sur 20+ pays d'Afrique. Une intégration unique vous donne accès à MTN, Moov, Orange, Wave, M-Pesa, USDT, BTC et plus.</p>
@@ -1167,11 +1168,227 @@ Content-Type: application/json
     }
   }
 }</pre>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="auth" style="display:none">
+          <h1>Authentification</h1>
+          <p>Toutes les requêtes API s'authentifient via une clé Bearer dans l'en-tête <code>Authorization</code>. Récupérez vos clés dans <code>Réglages → Clés API</code>.</p>
+          <h3>En-tête requis</h3>
+          <pre class="doc-code">Authorization: Bearer kpy_prv_live_a4f2b1c8d9e3742fa18e</pre>
+          <p>La clé publique (<code>kpy_pub_…</code>) est utilisable côté navigateur. La clé privée (<code>kpy_prv_…</code>) reste strictement côté serveur.</p>
+          <h3>Bonnes pratiques</h3>
+          <p>Stockez la clé privée dans une variable d'environnement, ne la commitez jamais, et régénérez-la immédiatement en cas de fuite depuis le dashboard.</p>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="sandbox" style="display:none">
+          <h1>Sandbox &amp; Live</h1>
+          <p>Chaque compte dispose de deux environnements indépendants avec leurs propres clés.</p>
+          <table>
+            <thead><tr><th>Env</th><th>Base URL</th><th>Préfixe clé</th></tr></thead>
+            <tbody>
+              <tr><td>Sandbox</td><td>api.wourapay.com/v1</td><td>kpy_..._test_</td></tr>
+              <tr><td>Live</td><td>api.wourapay.com/v1</td><td>kpy_..._live_</td></tr>
+            </tbody>
+          </table>
+          <p>En sandbox, simulez un succès en utilisant le numéro <code>+229 00 00 00 01</code>, un échec avec <code>…02</code>, et un timeout avec <code>…03</code>.</p>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="devises" style="display:none">
+          <h1>Devises &amp; pays</h1>
+          <p>WouraPay couvre 20+ pays. Indiquez la devise locale dans <code>currency</code> ; la conversion crypto est automatique.</p>
+          <table>
+            <thead><tr><th>Pays</th><th>Devise</th><th>Réseaux</th></tr></thead>
+            <tbody>
+              <tr><td>Bénin</td><td>XOF</td><td>MTN_BJ, MOOV_BJ, CORIS_BJ</td></tr>
+              <tr><td>Côte d'Ivoire</td><td>XOF</td><td>MTN_CI, ORANGE_CI, WAVE_CI</td></tr>
+              <tr><td>Nigeria</td><td>NGN</td><td>MTN_NG, AIRTEL_NG</td></tr>
+              <tr><td>Kenya</td><td>KES</td><td>MPESA_KE</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="liens" style="display:none">
+          <h1>Liens de paiement</h1>
+          <div class="row gap-2 mb-3"><span class="method method-post">POST</span><span class="endpoint">/payment-links</span></div>
+          <p>Crée une URL partageable. Le paramètre <code>fee_bearer</code> définit qui supporte les frais : <code>customer</code> (par défaut) ou <code>merchant</code>.</p>
+          <pre class="doc-code">{
+  "amount": 5000,
+  "currency": "XOF",
+  "fee_bearer": "customer",
+  "networks": ["MTN_BJ", "WAVE_CI"],
+  "callback_url": "https://ma-boutique.ci/hook"
+}</pre>
+          <p>Réponse <code>201</code> : un objet contenant <code>url</code> et <code>qr_code_url</code>.</p>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="apidirect" style="display:none">
+          <h1>API direct (sans lien)</h1>
+          <div class="row gap-2 mb-3"><span class="method method-post">POST</span><span class="endpoint">/charges</span></div>
+          <p>Déclenchez une demande de paiement directement vers un numéro, sans page hébergée. Idéal pour une intégration native.</p>
+          <pre class="doc-code">POST /v1/charges
+{
+  "amount": 10000,
+  "currency": "XOF",
+  "network": "MTN_BJ",
+  "phone": "22961234547"
+}</pre>
+          <p>Le client reçoit une notification USSD/push et confirme. Vous êtes notifié via webhook.</p>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="webhooks" style="display:none">
+          <h1>Webhooks</h1>
+          <p>WouraPay POST votre <code>callback_url</code> à chaque changement d'état. Répondez <code>200</code> sous 10s, sinon l'événement est rejoué (jusqu'à 8 fois, backoff exponentiel).</p>
+          <h3>Événements</h3>
+          <table>
+            <thead><tr><th>Événement</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>payment.succeeded</td><td>Paiement confirmé</td></tr>
+              <tr><td>payment.failed</td><td>Paiement échoué</td></tr>
+              <tr><td>payout.completed</td><td>Reversement effectué</td></tr>
+              <tr><td>refund.created</td><td>Remboursement initié</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="hmac" style="display:none">
+          <h1>Signature HMAC</h1>
+          <p>Chaque webhook inclut un en-tête <code>WouraPay-Signature</code>. Vérifiez-le avec votre secret pour garantir l'authenticité.</p>
+          <pre class="doc-code">const sig = crypto
+  .createHmac("sha256", WEBHOOK_SECRET)
+  .update(rawBody)
+  .digest("hex");
+if (sig !== req.headers["wourapay-signature"]) {
+  return res.status(401).end();
+}</pre>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="payoutmomo" style="display:none">
+          <h1>Reversement vers Mobile Money</h1>
+          <div class="row gap-2 mb-3"><span class="method method-post">POST</span><span class="endpoint">/payouts</span></div>
+          <p>Envoyez des fonds depuis votre wallet vers un numéro Mobile Money.</p>
+          <pre class="doc-code">{
+  "amount": 150000,
+  "currency": "XOF",
+  "network": "MTN_BJ",
+  "phone": "22961234547",
+  "beneficiary": "Sylvère T."
+}</pre>
+          <p>Délai : 24–48 h ouvrées. Frais de payout : 0,5 %.</p>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="payoutbank" style="display:none">
+          <h1>Reversement vers compte bancaire</h1>
+          <p>Utilisez <code>destination: "bank"</code> avec les coordonnées IBAN/RIB du bénéficiaire.</p>
+          <pre class="doc-code">{
+  "amount": 540000,
+  "currency": "XOF",
+  "destination": "bank",
+  "bank_code": "CI008",
+  "account": "····2218"
+}</pre>
+          <p>Délai : 1–3 jours ouvrés selon la banque.</p>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="payoutcrypto" style="display:none">
+          <h1>Reversement vers crypto</h1>
+          <p>Envoyez vers une adresse crypto en précisant le réseau. La conversion depuis votre solde XOF est automatique au taux du moment.</p>
+          <pre class="doc-code">{
+  "amount": 2850,
+  "currency": "USDT",
+  "destination": "crypto",
+  "network": "TRC20",
+  "address": "TEmGwPeRTPi9YxAk2vN8Q5pH3wD4LzKbR8F"
+}</pre>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="sdkjs" style="display:none">
+          <h1>SDK JavaScript</h1>
+          <pre class="doc-code">npm install @wourapay/node</pre>
+          <pre class="doc-code">import WouraPay from "@wourapay/node";
+const woura = new WouraPay(process.env.WOURA_SECRET);
+
+const link = await woura.paymentLinks.create({
+  amount: 5000, currency: "XOF",
+  networks: ["MTN_BJ", "WAVE_CI"]
+});
+console.log(link.url);</pre>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="sdkpython" style="display:none">
+          <h1>SDK Python</h1>
+          <pre class="doc-code">pip install wourapay</pre>
+          <pre class="doc-code">import wourapay
+woura = wourapay.Client(api_key="kpy_prv_live_...")
+
+link = woura.payment_links.create(
+    amount=5000, currency="XOF",
+    networks=["MTN_BJ", "WAVE_CI"]
+)
+print(link.url)</pre>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="sdkphp" style="display:none">
+          <h1>SDK PHP</h1>
+          <pre class="doc-code">composer require wourapay/wourapay-php</pre>
+          <pre class="doc-code">$woura = new \WouraPay\Client('kpy_prv_live_...');
+
+$link = $woura->paymentLinks->create([
+  'amount' => 5000,
+  'currency' => 'XOF',
+  'networks' => ['MTN_BJ', 'WAVE_CI'],
+]);
+echo $link->url;</pre>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="erreurs" style="display:none">
+          <h1>Codes d'erreur</h1>
+          <p>Les erreurs renvoient un statut HTTP approprié et un corps JSON avec <code>code</code> et <code>message</code>.</p>
+          <table>
+            <thead><tr><th>Code</th><th>HTTP</th><th>Signification</th></tr></thead>
+            <tbody>
+              <tr><td>invalid_request</td><td>400</td><td>Paramètre manquant ou invalide</td></tr>
+              <tr><td>unauthorized</td><td>401</td><td>Clé API invalide</td></tr>
+              <tr><td>insufficient_funds</td><td>402</td><td>Solde client insuffisant</td></tr>
+              <tr><td>network_unavailable</td><td>503</td><td>Agrégateur indisponible</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="limites" style="display:none">
+          <h1>Limites &amp; rate limits</h1>
+          <p>L'API est limitée à <code>100 requêtes / seconde</code> par clé. Au-delà, vous recevez un <code>429</code> avec un en-tête <code>Retry-After</code>.</p>
+          <table>
+            <thead><tr><th>Ressource</th><th>Limite</th></tr></thead>
+            <tbody>
+              <tr><td>Requêtes API</td><td>100 / s</td></tr>
+              <tr><td>Liens actifs</td><td>illimité</td></tr>
+              <tr><td>Montant max / transaction</td><td>2 000 000 XOF</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="doc-panel" data-doc-panel="changelog" style="display:none">
+          <h1>Changelog</h1>
+          <h3>v1.2 — 24 mai 2026</h3>
+          <p>Ajout du paramètre <code>fee_bearer</code> sur les liens de paiement. Support des reversements crypto vers TRC20 et ERC20.</p>
+          <h3>v1.1 — 12 avril 2026</h3>
+          <p>Nouveaux réseaux : M-Pesa Kenya, Airtel Nigeria. Webhooks signés HMAC-SHA256.</p>
+          <h3>v1.0 — 12 janvier 2026</h3>
+          <p>Lancement de l'API : liens de paiement, charges directes, reversements Mobile Money.</p>
+        </div>
       </div>
 
     </div>
   </main>
 </div>
+<script>
+function docShow(e, id) {
+  e.preventDefault();
+  document.querySelectorAll('.doc-panel').forEach(p => p.style.display = p.dataset.docPanel === id ? '' : 'none');
+  document.querySelectorAll('.doc-link[data-doc]').forEach(t => t.classList.toggle('is-active', t.dataset.doc === id));
+  document.querySelector('.doc').scrollTop = 0;
+}
+</script>
 <script>/* WouraPay shared shell — renders sidebar + topbar from data attrs */
 (function () {
   const I = {

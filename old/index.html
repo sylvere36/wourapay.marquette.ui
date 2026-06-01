@@ -1144,13 +1144,22 @@ body { background: var(--bg-base); min-width: auto; }
     <div class="hub-hero">
       <div class="fs-12 text-success" style="text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin-bottom:16px">Orchestrateur de paiement · Afrique</div>
       <h1>Toutes les maquettes UI de WouraPay, dans un seul espace.</h1>
-      <p>32 écrans haute fidélité — Admin WouraPay, Espace Marchand, Page de paiement client. Conçus selon le design system détaillé : palette dark mode, Inter + JetBrains Mono, Lucide icons, vert <code class="mono" style="background:var(--bg-elevated);padding:1px 6px;border-radius:3px">#22C55E</code> en couleur principale.</p>
+      <p>57 écrans haute fidélité — Landing pro, Admin WouraPay (25 écrans), Espace Marchand (20 écrans), Page de paiement client. Conçus selon le design system détaillé : palette dark mode, Inter + JetBrains Mono, Lucide icons, vert <code class="mono" style="background:var(--bg-elevated);padding:1px 6px;border-radius:3px">#22C55E</code> en couleur principale.</p>
       <div class="hub-stats">
-        <div><strong>13</strong>Écrans Admin</div>
-        <div><strong>10</strong>Écrans Marchand</div>
-        <div><strong>9</strong>États Paiement client</div>
-        <div><strong>32</strong>Total écrans</div>
+        <div><strong>1</strong>Landing pro</div>
+        <div><strong>25</strong>Écrans Admin</div>
+        <div><strong>20</strong>Écrans Marchand</div>
+        <div><strong>9</strong>États Paiement</div>
+        <div><strong>57</strong>Total écrans</div>
       </div>
+    </div>
+
+    <div class="section-title">Public & Authentification</div>
+    <h2 class="section-subtitle">Vitrine et points d'entrée des deux espaces</h2>
+    <div class="tile-grid">
+      <a class="tile tile--feature" href="landing.html"><span class="tile__code">LP · P0</span><span class="tile__name">Landing page pro</span><span class="tile__desc">Marketing : hero, features, couverture, API, tarifs, CTA</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-auth.html"><span class="tile__code">A0 · P0</span><span class="tile__name">Auth Admin</span><span class="tile__desc">Login, 2FA, mot de passe oublié, reset · split-screen</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="merchant-auth.html"><span class="tile__code">M10 · P0</span><span class="tile__name">Auth Marchand</span><span class="tile__desc">Login, Register, 2FA, Forgot, Sent</span><span class="tile__corner">→</span></a>
     </div>
 
     <div class="section-title">Admin WouraPay · admin.wourapay.com</div>
@@ -1163,18 +1172,30 @@ body { background: var(--bg-base); min-width: auto; }
         <span class="tile__corner">→</span>
       </a>
       <a class="tile" href="admin-transactions.html"><span class="tile__code">A2 · P0</span><span class="tile__name">Transactions</span><span class="tile__desc">Liste filtrable, slide-over détail avec timeline</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-transaction-detail.html"><span class="tile__code">A2b</span><span class="tile__name">Détail transaction</span><span class="tile__desc">Page pleine : montants, cycle de vie, payload</span><span class="tile__corner">→</span></a>
       <a class="tile" href="admin-reversements.html"><span class="tile__code">A3 · P0</span><span class="tile__name">Reversements</span><span class="tile__desc">Onglets statut, modal d'approbation</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-reversement-detail.html"><span class="tile__code">A3b</span><span class="tile__name">Détail reversement</span><span class="tile__desc">Vérifs auto, solde, approbation payout</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-remboursements.html"><span class="tile__code">A15</span><span class="tile__name">Remboursements</span><span class="tile__desc">Refunds : motifs, total/partiel, approbation</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-litiges.html"><span class="tile__code">A16</span><span class="tile__name">Litiges</span><span class="tile__desc">Disputes & chargebacks, preuves, échéances</span><span class="tile__corner">→</span></a>
       <a class="tile" href="admin-wallets.html"><span class="tile__code">A4 · P1</span><span class="tile__name">Wallets marchands</span><span class="tile__desc">Soldes consolidés par devise</span><span class="tile__corner">→</span></a>
       <a class="tile" href="admin-marchands.html"><span class="tile__code">A5 · P0</span><span class="tile__name">Marchands</span><span class="tile__desc">Liste + statut KYC</span><span class="tile__corner">→</span></a>
       <a class="tile" href="admin-marchand-detail.html"><span class="tile__code">A5b</span><span class="tile__name">Détail marchand</span><span class="tile__desc">Profil, clés API, activité</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-kyc.html"><span class="tile__code">A14</span><span class="tile__name">Vérifications KYC</span><span class="tile__desc">File de validation, docs, approbation</span><span class="tile__corner">→</span></a>
       <a class="tile" href="admin-reseaux.html"><span class="tile__code">A6 · P0</span><span class="tile__name">Pays & Réseaux</span><span class="tile__desc">Routing par pays/agrégateur</span><span class="tile__corner">→</span></a>
       <a class="tile" href="admin-agregateurs.html"><span class="tile__code">A7 · P1</span><span class="tile__name">Agrégateurs</span><span class="tile__desc">PawaPay, Hub2, FeexPay, NowPayments</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-webhooks.html"><span class="tile__code">A20</span><span class="tile__name">Webhooks</span><span class="tile__desc">Livraisons, retries, replays, payloads</span><span class="tile__corner">→</span></a>
       <a class="tile" href="admin-revenus.html"><span class="tile__code">A8 · P1</span><span class="tile__name">Revenus</span><span class="tile__desc">Markups WouraPay · top marchands</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-reconciliation.html"><span class="tile__code">A17</span><span class="tile__name">Réconciliation</span><span class="tile__desc">Rapprochement règlements agrégateurs, écarts</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-tarification.html"><span class="tile__code">A18</span><span class="tile__name">Tarification</span><span class="tile__desc">Plans, markups par réseau, grilles</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-fx.html"><span class="tile__code">A19</span><span class="tile__name">Taux de change</span><span class="tile__desc">Devises & conversions crypto, spread</span><span class="tile__corner">→</span></a>
       <a class="tile" href="admin-rapports.html"><span class="tile__code">A9 · P2</span><span class="tile__name">Rapports</span><span class="tile__desc">Génération CSV/Excel/PDF</span><span class="tile__corner">→</span></a>
       <a class="tile" href="admin-alertes.html"><span class="tile__code">A10 · P1</span><span class="tile__name">Alertes</span><span class="tile__desc">Règles + notifications actives</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-notifications.html"><span class="tile__code">A21</span><span class="tile__name">Notifications</span><span class="tile__desc">Centre d'activité, groupé par jour</span><span class="tile__corner">→</span></a>
       <a class="tile" href="admin-logs.html"><span class="tile__code">A11 · P2</span><span class="tile__name">Logs système</span><span class="tile__desc">Appels API entrants/sortants</span><span class="tile__corner">→</span></a>
       <a class="tile" href="admin-equipe.html"><span class="tile__code">A12 · P2</span><span class="tile__name">Équipe</span><span class="tile__desc">Membres, rôles, permissions</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-profil.html"><span class="tile__code">A22</span><span class="tile__name">Mon profil</span><span class="tile__desc">Identité, sécurité, activité récente</span><span class="tile__corner">→</span></a>
       <a class="tile" href="admin-parametres.html"><span class="tile__code">A13 · P2</span><span class="tile__name">Paramètres</span><span class="tile__desc">Sécurité, IPs, sessions</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="admin-404.html"><span class="tile__code">A23</span><span class="tile__name">Page 404</span><span class="tile__desc">Erreur — page introuvable</span><span class="tile__corner">→</span></a>
     </div>
 
     <div class="section-title">Espace Marchand · app.wourapay.com</div>
@@ -1183,13 +1204,23 @@ body { background: var(--bg-base); min-width: auto; }
       <a class="tile tile--feature" href="merchant-home.html"><span class="tile__code">M1 · P0</span><span class="tile__name">Accueil</span><span class="tile__desc">KPI, volume, wallets, accès rapides</span><span class="tile__corner">→</span></a>
       <a class="tile" href="merchant-liens.html"><span class="tile__code">M2 · P0</span><span class="tile__name">Liens de paiement</span><span class="tile__desc">Création, QR code, statuts</span><span class="tile__corner">→</span></a>
       <a class="tile" href="merchant-transactions.html"><span class="tile__code">M3 · P0</span><span class="tile__name">Transactions</span><span class="tile__desc">Historique des paiements reçus</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="merchant-transaction-detail.html"><span class="tile__code">M3b</span><span class="tile__name">Détail transaction</span><span class="tile__desc">Page pleine : montants, suivi, callback</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="merchant-lien-detail.html"><span class="tile__code">M2b</span><span class="tile__name">Détail lien</span><span class="tile__desc">Stats, QR, paiements reçus, partage</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="merchant-remboursements.html"><span class="tile__code">M11</span><span class="tile__name">Remboursements</span><span class="tile__desc">Rembourser un client · total/partiel</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="merchant-litiges.html"><span class="tile__code">M12</span><span class="tile__name">Litiges</span><span class="tile__desc">Répondre aux disputes, fournir preuves</span><span class="tile__corner">→</span></a>
       <a class="tile" href="merchant-wallets.html"><span class="tile__code">M4 · P0</span><span class="tile__name">Wallets</span><span class="tile__desc">Soldes, mouvements, graphique</span><span class="tile__corner">→</span></a>
       <a class="tile" href="merchant-reversements.html"><span class="tile__code">M5 · P0</span><span class="tile__name">Reversements</span><span class="tile__desc">Demande vers MoMo, banque, crypto</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="merchant-clients.html"><span class="tile__code">M13</span><span class="tile__name">Clients</span><span class="tile__desc">Répertoire des clients finaux, dépenses</span><span class="tile__corner">→</span></a>
       <a class="tile" href="merchant-api.html"><span class="tile__code">M6 · P0</span><span class="tile__name">Clés API</span><span class="tile__desc">Live/Sandbox + snippets d'intégration</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="merchant-webhooks.html"><span class="tile__code">M16</span><span class="tile__name">Webhooks</span><span class="tile__desc">Endpoint, livraisons, replays</span><span class="tile__corner">→</span></a>
       <a class="tile" href="merchant-documentation.html"><span class="tile__code">M7 · P2</span><span class="tile__name">Documentation</span><span class="tile__desc">API reference embedded</span><span class="tile__corner">→</span></a>
-      <a class="tile" href="merchant-parametres.html"><span class="tile__code">M8 · P1</span><span class="tile__name">Paramètres</span><span class="tile__desc">Profil, notifications, KYC, équipe</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="merchant-equipe.html"><span class="tile__code">M15</span><span class="tile__name">Équipe</span><span class="tile__desc">Membres, rôles, permissions</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="merchant-notifications.html"><span class="tile__code">M14</span><span class="tile__name">Notifications</span><span class="tile__desc">Centre d'activité marchand</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="merchant-parametres.html"><span class="tile__code">M8 · P1</span><span class="tile__name">Paramètres</span><span class="tile__desc">Profil boutique, notifications, KYC</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="merchant-profil.html"><span class="tile__code">M17</span><span class="tile__name">Mon profil</span><span class="tile__desc">Identité perso, sécurité, appareils</span><span class="tile__corner">→</span></a>
       <a class="tile" href="merchant-onboarding.html"><span class="tile__code">M9 · P0</span><span class="tile__name">Onboarding</span><span class="tile__desc">Flow 4 étapes · KYC entreprise</span><span class="tile__corner">→</span></a>
       <a class="tile" href="merchant-auth.html"><span class="tile__code">M10 · P0</span><span class="tile__name">Authentification</span><span class="tile__desc">Login, Register, 2FA, Forgot</span><span class="tile__corner">→</span></a>
+      <a class="tile" href="merchant-404.html"><span class="tile__code">M18</span><span class="tile__name">Page 404</span><span class="tile__desc">Erreur — page introuvable</span><span class="tile__corner">→</span></a>
     </div>
 
     <div class="section-title">Page de paiement client · pay.wourapay.com/:token</div>

@@ -1058,18 +1058,20 @@ a { color: inherit; text-decoration: none; }
 
     <div class="grid" style="grid-template-columns: 220px 1fr; gap:24px; align-items:flex-start">
       <div class="col" style="gap:2px">
-        <div class="side-tab is-active">Profil boutique</div>
-        <div class="side-tab">Sécurité</div>
-        <div class="side-tab">Notifications</div>
-        <div class="side-tab">KYC · Vérification</div>
-        <div class="side-tab">Équipe</div>
-        <div class="side-tab">Facturation</div>
-        <div class="side-tab">Apparence du paiement</div>
-        <div class="side-tab">Webhooks</div>
+        <div class="side-tab is-active" data-st="profil" onclick="stShow(event,'profil')">Profil boutique</div>
+        <div class="side-tab" data-st="securite" onclick="stShow(event,'securite')">Sécurité</div>
+        <div class="side-tab" data-st="notifications" onclick="stShow(event,'notifications')">Notifications</div>
+        <div class="side-tab" data-st="kyc" onclick="stShow(event,'kyc')">KYC · Vérification</div>
+        <div class="side-tab" data-st="equipe" onclick="stShow(event,'equipe')">Équipe</div>
+        <div class="side-tab" data-st="facturation" onclick="stShow(event,'facturation')">Facturation</div>
+        <div class="side-tab" data-st="apparence" onclick="stShow(event,'apparence')">Apparence du paiement</div>
+        <div class="side-tab" data-st="webhooks" onclick="stShow(event,'webhooks')">Webhooks</div>
       </div>
 
       <div class="col gap-6" style="max-width:680px">
 
+        <!-- PANEL Profil -->
+        <div class="st-panel" data-st-panel="profil">
         <div class="card card--lg">
           <h2 class="page-h3">Identité de la boutique</h2>
           <p class="card__sub mt-2">Ces informations sont visibles par vos clients sur la page de paiement.</p>
@@ -1117,6 +1119,22 @@ a { color: inherit; text-decoration: none; }
           </div>
         </div>
 
+        </div>
+
+        <!-- PANEL Sécurité -->
+        <div class="st-panel" data-st-panel="securite" style="display:none">
+          <div class="card card--lg">
+            <h2 class="page-h3">Sécurité</h2>
+            <div class="col gap-4 mt-6">
+              <div class="row" style="justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--bg-border)"><div><div class="font-semibold">Mot de passe</div><div class="fs-12 text-secondary">Modifié il y a 2 mois</div></div><button class="btn btn--secondary btn--sm">Changer</button></div>
+              <div class="row" style="justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--bg-border)"><div><div class="row gap-2"><div class="font-semibold">Authentification 2FA</div><span class="badge-st badge-st--success"><span class="badge-st__dot"></span>Activée</span></div><div class="fs-12 text-secondary">Google Authenticator</div></div><button class="btn btn--secondary btn--sm">Reconfigurer</button></div>
+              <div class="row" style="justify-content:space-between;align-items:center"><div><div class="font-semibold">Adresses IP autorisées</div><div class="fs-12 text-secondary">Restreindre l'accès API (optionnel)</div></div><div class="switch"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL Notifications -->
+        <div class="st-panel" data-st-panel="notifications" style="display:none">
         <div class="card card--lg">
           <h2 class="page-h3">Notifications</h2>
           <p class="card__sub mt-2">Choisissez quels événements déclenchent un email</p>
@@ -1128,11 +1146,107 @@ a { color: inherit; text-decoration: none; }
             <div class="row gap-3" style="justify-content:space-between"><div><div class="font-semibold fs-13">Récapitulatif quotidien</div><div class="fs-12 text-secondary">Bilan envoyé chaque soir 21h</div></div><div class="switch is-on"></div></div>
           </div>
         </div>
+        </div>
+        <!-- /PANEL Notifications -->
+
+        <!-- PANEL KYC -->
+        <div class="st-panel" data-st-panel="kyc" style="display:none">
+          <div class="card card--lg">
+            <h2 class="page-h3">KYC · Vérification</h2>
+            <p class="card__sub mt-2">Statut de validation de votre compte</p>
+            <div class="row gap-3 mt-6" style="padding:14px;background:var(--success-bg);border:1px solid rgba(34,197,94,0.2);border-radius:10px;align-items:center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green-500)" stroke-width="1.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <div class="flex-1"><div class="font-semibold">Compte vérifié</div><div class="fs-12 text-secondary">KYC entreprise validé le 12 jan 2026</div></div>
+              <span class="badge-st badge-st--success"><span class="badge-st__dot"></span>Vérifié</span>
+            </div>
+            <dl class="kv-list mt-6">
+              <dt>Représentant</dt><dd>Sylvère T. · ✓ CNI vérifiée</dd>
+              <dt>RCCM</dt><dd class="mono">CI-ABJ-2024-B-1284</dd>
+              <dt>NIF</dt><dd class="mono">2024-CI-4582</dd>
+              <dt>Justificatif</dt><dd>✓ Statuts de société</dd>
+              <dt>Niveau</dt><dd>Vérifié · plafonds maximaux débloqués</dd>
+            </dl>
+            <button class="btn btn--secondary btn--sm mt-6">Mettre à jour mes documents</button>
+          </div>
+        </div>
+
+        <!-- PANEL Équipe -->
+        <div class="st-panel" data-st-panel="equipe" style="display:none">
+          <div class="card card--lg">
+            <h2 class="page-h3">Équipe</h2>
+            <p class="card__sub mt-2">Gérez les membres et leurs rôles</p>
+            <div class="col gap-2 mt-6">
+              <div class="row gap-3" style="padding:10px 12px;background:var(--bg-elevated);border-radius:10px;align-items:center"><div class="av av--xs av-3">ST</div><div class="flex-1"><div class="font-semibold fs-13">Sylvère T.</div><div class="fs-12 text-tertiary">Propriétaire</div></div><span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>vous</span></div>
+              <div class="row gap-3" style="padding:10px 12px;background:var(--bg-elevated);border-radius:10px;align-items:center"><div class="av av--xs av-2">KA</div><div class="flex-1"><div class="font-semibold fs-13">Koffi A.</div><div class="fs-12 text-tertiary">Gestionnaire</div></div></div>
+            </div>
+            <a href="merchant-equipe.html" class="btn btn--secondary btn--sm mt-6">Gérer l'équipe →</a>
+          </div>
+        </div>
+
+        <!-- PANEL Facturation -->
+        <div class="st-panel" data-st-panel="facturation" style="display:none">
+          <div class="card card--lg">
+            <h2 class="page-h3">Prise en charge des frais</h2>
+            <p class="card__sub mt-2">Règle par défaut appliquée à tous vos liens et paiements API</p>
+            <div class="col gap-3 mt-6">
+              <label class="row gap-3" style="padding:14px;border:1px solid var(--green-500);background:rgba(34,197,94,0.05);border-radius:10px;cursor:pointer;align-items:flex-start">
+                <input type="radio" name="fee_default" checked style="margin-top:2px"/>
+                <div class="flex-1"><div class="font-semibold fs-13">Le client paie les frais</div><div class="fs-12 text-secondary mt-2">Les frais sont ajoutés au montant. Vous recevez exactement le prix affiché. Ex : sur 10 000 XOF, le client paie ~10 270 XOF.</div></div>
+                <span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>par défaut</span>
+              </label>
+              <label class="row gap-3" style="padding:14px;border:1px solid var(--bg-border);border-radius:10px;cursor:pointer;align-items:flex-start">
+                <input type="radio" name="fee_default" style="margin-top:2px"/>
+                <div class="flex-1"><div class="font-semibold fs-13">Je prends en charge les frais</div><div class="fs-12 text-secondary mt-2">Les frais sont déduits de votre encaissement. Le client paie le prix affiché. Ex : sur 10 000 XOF, vous recevez ~9 730 XOF.</div></div>
+              </label>
+            </div>
+            <div class="row gap-3 mt-6" style="padding:12px;background:var(--info-bg);border:1px solid rgba(59,130,246,0.2);border-radius:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--info-text)" stroke-width="1.5" stroke-linecap="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="fs-13" style="color:#93c5fd">Vous pouvez surcharger ce réglage lien par lien lors de la création.</div></div>
+          </div>
+          <div class="card card--lg mt-6">
+            <h2 class="page-h3">Plan & facturation</h2>
+            <div class="row mt-6" style="justify-content:space-between;align-items:center"><div><div class="font-semibold">Plan Business</div><div class="fs-12 text-secondary">1,9% par transaction · crypto inclus</div></div><span class="badge-st badge-st--success"><span class="badge-st__dot"></span>actif</span></div>
+          </div>
+        </div>
+
+        <!-- PANEL Apparence -->
+        <div class="st-panel" data-st-panel="apparence" style="display:none">
+          <div class="card card--lg">
+            <h2 class="page-h3">Apparence de la page de paiement</h2>
+            <p class="card__sub mt-2">Ce que voient vos clients lors du paiement</p>
+            <div class="col gap-4 mt-6">
+              <div class="field"><label class="field__label">Couleur principale</label>
+                <div class="row gap-2" style="margin-top:4px">
+                  <div style="width:32px;height:32px;border-radius:8px;background:#22C55E;border:2px solid var(--text-primary)"></div>
+                  <div style="width:32px;height:32px;border-radius:8px;background:#3B82F6"></div>
+                  <div style="width:32px;height:32px;border-radius:8px;background:#8B5CF6"></div>
+                  <div style="width:32px;height:32px;border-radius:8px;background:#EF4444"></div>
+                </div>
+              </div>
+              <div class="row" style="justify-content:space-between;align-items:center"><div><div class="font-semibold fs-13">Afficher mon logo</div><div class="fs-12 text-secondary">En haut de la page de paiement</div></div><div class="switch is-on"></div></div>
+              <div class="row" style="justify-content:space-between;align-items:center"><div><div class="font-semibold fs-13">Reçu par email au client</div><div class="fs-12 text-secondary">Envoi automatique après paiement</div></div><div class="switch is-on"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL Webhooks -->
+        <div class="st-panel" data-st-panel="webhooks" style="display:none">
+          <div class="card card--lg">
+            <h2 class="page-h3">Webhooks</h2>
+            <p class="card__sub mt-2">Notifications serveur de vos événements de paiement</p>
+            <div class="row gap-3 mt-6" style="padding:12px 14px;background:var(--bg-elevated);border-radius:10px;align-items:center"><span class="mono fs-13" style="flex:1">ma-boutique.ci/api/wourapay/webhook</span><span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>200</span></div>
+            <a href="merchant-webhooks.html" class="btn btn--secondary btn--sm mt-6">Configurer les webhooks →</a>
+          </div>
+        </div>
 
       </div>
     </div>
   </main>
 </div>
+<script>
+function stShow(e, id) {
+  document.querySelectorAll('.st-panel').forEach(p => p.style.display = p.dataset.stPanel === id ? '' : 'none');
+  document.querySelectorAll('.side-tab[data-st]').forEach(t => t.classList.toggle('is-active', t.dataset.st === id));
+}
+</script>
 <script>/* WouraPay shared shell — renders sidebar + topbar from data attrs */
 (function () {
   const I = {

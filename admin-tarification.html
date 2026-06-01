@@ -1052,69 +1052,125 @@ a { color: inherit; text-decoration: none; }
     </div>
 
     <div class="tabs">
-      <button class="tab tab--active">Grilles globales</button>
-      <button class="tab">Markups par réseau</button>
-      <button class="tab">Tarifs marchands</button>
-      <button class="tab">Frais agrégateurs</button>
+      <button class="tab tab--active" data-tp="grilles" onclick="tpShow(event,'grilles')">Grilles globales</button>
+      <button class="tab" data-tp="markups" onclick="tpShow(event,'markups')">Markups par réseau</button>
+      <button class="tab" data-tp="marchands" onclick="tpShow(event,'marchands')">Tarifs marchands</button>
+      <button class="tab" data-tp="agreg" onclick="tpShow(event,'agreg')">Frais agrégateurs</button>
     </div>
 
-    <!-- Plans -->
-    <div class="grid-3 mb-6">
-      <div class="card card--lg">
-        <div class="row" style="justify-content:space-between"><h3 class="card__title">Starter</h3><span class="badge-st badge-st--neutral">défaut</span></div>
-        <div style="font-size:32px;font-weight:800;letter-spacing:-0.02em;margin:14px 0 2px">2,9%</div>
-        <div class="fs-13 text-secondary">par transaction réussie</div>
-        <div class="col gap-2 mt-4 fs-13 text-secondary">
-          <div class="row gap-2"><span class="text-success">✓</span> Mobile Money tous réseaux</div>
-          <div class="row gap-2"><span class="text-success">✓</span> Reversement MoMo inclus</div>
-          <div class="row gap-2"><span class="text-tertiary">—</span> Crypto en option (+1%)</div>
+    <!-- PANEL: Grilles globales -->
+    <div class="tp-panel" data-tp-panel="grilles">
+      <div class="grid-3 mb-6">
+        <div class="card card--lg">
+          <div class="row" style="justify-content:space-between"><h3 class="card__title">Starter</h3><span class="badge-st badge-st--neutral">défaut</span></div>
+          <div style="font-size:32px;font-weight:800;letter-spacing:-0.02em;margin:14px 0 2px">2,9%</div>
+          <div class="fs-13 text-secondary">par transaction réussie</div>
+          <div class="col gap-2 mt-4 fs-13 text-secondary">
+            <div class="row gap-2"><span class="text-success">✓</span> Mobile Money tous réseaux</div>
+            <div class="row gap-2"><span class="text-success">✓</span> Reversement MoMo inclus</div>
+            <div class="row gap-2"><span class="text-tertiary">—</span> Crypto en option (+1%)</div>
+          </div>
+          <div class="fs-12 text-tertiary mt-4">28 marchands sur ce plan</div>
         </div>
-        <div class="fs-12 text-tertiary mt-4">28 marchands sur ce plan</div>
+        <div class="card card--lg" style="border-color:var(--green-500);box-shadow:var(--sh-glow)">
+          <div class="row" style="justify-content:space-between"><h3 class="card__title">Business</h3><span class="badge-st badge-st--success"><span class="badge-st__dot"></span>populaire</span></div>
+          <div style="font-size:32px;font-weight:800;letter-spacing:-0.02em;margin:14px 0 2px">1,9%</div>
+          <div class="fs-13 text-secondary">par transaction réussie</div>
+          <div class="col gap-2 mt-4 fs-13 text-secondary">
+            <div class="row gap-2"><span class="text-success">✓</span> Tout Starter</div>
+            <div class="row gap-2"><span class="text-success">✓</span> Crypto inclus</div>
+            <div class="row gap-2"><span class="text-success">✓</span> Comptes d'équipe</div>
+          </div>
+          <div class="fs-12 text-tertiary mt-4">16 marchands sur ce plan</div>
+        </div>
+        <div class="card card--lg">
+          <div class="row" style="justify-content:space-between"><h3 class="card__title">Enterprise</h3><span class="badge-st badge-st--info">négocié</span></div>
+          <div style="font-size:32px;font-weight:800;letter-spacing:-0.02em;margin:14px 0 2px">0,9%<span style="font-size:14px;color:var(--text-secondary);font-weight:500"> – 1,5%</span></div>
+          <div class="fs-13 text-secondary">tarif dégressif sur volume</div>
+          <div class="col gap-2 mt-4 fs-13 text-secondary">
+            <div class="row gap-2"><span class="text-success">✓</span> Tout Business</div>
+            <div class="row gap-2"><span class="text-success">✓</span> SLA & support dédié</div>
+            <div class="row gap-2"><span class="text-success">✓</span> Markup sur mesure</div>
+          </div>
+          <div class="fs-12 text-tertiary mt-4">4 marchands sur ce plan</div>
+        </div>
       </div>
-      <div class="card card--lg" style="border-color:var(--green-500);box-shadow:var(--sh-glow)">
-        <div class="row" style="justify-content:space-between"><h3 class="card__title">Business</h3><span class="badge-st badge-st--success"><span class="badge-st__dot"></span>populaire</span></div>
-        <div style="font-size:32px;font-weight:800;letter-spacing:-0.02em;margin:14px 0 2px">1,9%</div>
-        <div class="fs-13 text-secondary">par transaction réussie</div>
-        <div class="col gap-2 mt-4 fs-13 text-secondary">
-          <div class="row gap-2"><span class="text-success">✓</span> Tout Starter</div>
-          <div class="row gap-2"><span class="text-success">✓</span> Crypto inclus</div>
-          <div class="row gap-2"><span class="text-success">✓</span> Comptes d'équipe</div>
+      <div class="card">
+        <h3 class="card__title">Règles globales par défaut</h3>
+        <div class="col gap-4 mt-4">
+          <div class="row" style="justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid var(--bg-border)"><div><div class="font-semibold fs-13">Plan attribué par défaut</div><div class="fs-12 text-secondary">Nouveau marchand après KYC</div></div><select class="select" style="width:160px"><option>Starter</option><option>Business</option></select></div>
+          <div class="row" style="justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid var(--bg-border)"><div><div class="font-semibold fs-13">Markup crypto additionnel</div><div class="fs-12 text-secondary">Ajouté pour les paiements crypto</div></div><div class="input-wrap" style="width:120px"><input class="input mono" value="1,00%"/></div></div>
+          <div class="row" style="justify-content:space-between;align-items:center"><div><div class="font-semibold fs-13">Frais de reversement</div><div class="fs-12 text-secondary">Appliqué à chaque payout</div></div><div class="input-wrap" style="width:120px"><input class="input mono" value="0,50%"/></div></div>
         </div>
-        <div class="fs-12 text-tertiary mt-4">16 marchands sur ce plan</div>
-      </div>
-      <div class="card card--lg">
-        <div class="row" style="justify-content:space-between"><h3 class="card__title">Enterprise</h3><span class="badge-st badge-st--info">négocié</span></div>
-        <div style="font-size:32px;font-weight:800;letter-spacing:-0.02em;margin:14px 0 2px">0,9%<span style="font-size:14px;color:var(--text-secondary);font-weight:500"> – 1,5%</span></div>
-        <div class="fs-13 text-secondary">tarif dégressif sur volume</div>
-        <div class="col gap-2 mt-4 fs-13 text-secondary">
-          <div class="row gap-2"><span class="text-success">✓</span> Tout Business</div>
-          <div class="row gap-2"><span class="text-success">✓</span> SLA & support dédié</div>
-          <div class="row gap-2"><span class="text-success">✓</span> Markup sur mesure</div>
-        </div>
-        <div class="fs-12 text-tertiary mt-4">4 marchands sur ce plan</div>
       </div>
     </div>
 
-    <!-- Markup table -->
-    <div class="card" style="padding:0">
-      <div class="card__header" style="padding:20px 24px;margin:0">
-        <div><h3 class="card__title">Décomposition des frais par réseau</h3><p class="card__sub">Frais agrégateur + markup WouraPay = frais total client</p></div>
-        <button class="btn btn--ghost btn--sm">Éditer en masse</button>
+    <!-- PANEL: Markups par réseau -->
+    <div class="tp-panel" data-tp-panel="markups" style="display:none">
+      <div class="card" style="padding:0">
+        <div class="card__header" style="padding:20px 24px;margin:0">
+          <div><h3 class="card__title">Décomposition des frais par réseau</h3><p class="card__sub">Frais agrégateur + markup WouraPay = frais total client</p></div>
+          <button class="btn btn--ghost btn--sm">Éditer en masse</button>
+        </div>
+        <table class="table">
+          <thead><tr><th>Réseau</th><th>Pays</th><th>Agrégateur</th><th class="num">Frais agrég.</th><th class="num">Markup Woura</th><th class="num">Frais total</th><th class="num">Min</th><th class="num">Max</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><div class="cell-network"><div class="netlogo netlogo--mtn">M</div>MTN MoMo</div></td><td>🇧🇯 BJ</td><td><span class="agg agg--pawapay">PawaPay</span></td><td class="num mono">2,20%</td><td class="num mono text-success">0,50%</td><td class="num mono font-semibold">2,70%</td><td class="num mono">100</td><td class="num mono">2M</td><td><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
+            <tr><td><div class="cell-network"><div class="netlogo netlogo--moov">M</div>Moov Money</div></td><td>🇧🇯 BJ</td><td><span class="agg agg--feexpay">FeexPay</span></td><td class="num mono">1,90%</td><td class="num mono text-success">0,50%</td><td class="num mono font-semibold">2,40%</td><td class="num mono">100</td><td class="num mono">2M</td><td><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
+            <tr><td><div class="cell-network"><div class="netlogo netlogo--wave">W</div>Wave</div></td><td>🇨🇮 CI</td><td><span class="agg agg--hub2">Hub2</span></td><td class="num mono">1,70%</td><td class="num mono text-success">0,50%</td><td class="num mono font-semibold">2,20%</td><td class="num mono">100</td><td class="num mono">1,5M</td><td><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
+            <tr><td><div class="cell-network"><div class="netlogo netlogo--orange">O</div>Orange Money</div></td><td>🇸🇳 SN</td><td><span class="agg agg--hub2">Hub2</span></td><td class="num mono">2,10%</td><td class="num mono text-success">0,50%</td><td class="num mono font-semibold">2,60%</td><td class="num mono">100</td><td class="num mono">2M</td><td><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
+            <tr><td><div class="cell-network"><div class="netlogo netlogo--mpesa">M</div>M-Pesa</div></td><td>🇰🇪 KE</td><td><span class="agg agg--pawapay">PawaPay</span></td><td class="num mono">1,50%</td><td class="num mono text-success">0,60%</td><td class="num mono font-semibold">2,10%</td><td class="num mono">10</td><td class="num mono">300k</td><td><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
+            <tr><td><div class="cell-network"><div class="netlogo netlogo--usdt">U</div>USDT TRC20</div></td><td>🌐 Crypto</td><td><span class="agg agg--nowpayments">NowPayments</span></td><td class="num mono">0,50%</td><td class="num mono text-success">1,00%</td><td class="num mono font-semibold">1,50%</td><td class="num mono">1</td><td class="num mono">100k</td><td><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
+          </tbody>
+        </table>
       </div>
-      <table class="table">
-        <thead><tr><th>Réseau</th><th>Pays</th><th>Agrégateur</th><th class="num">Frais agrég.</th><th class="num">Markup Woura</th><th class="num">Frais total</th><th class="num">Min</th><th class="num">Max</th><th></th></tr></thead>
-        <tbody>
-          <tr><td><div class="cell-network"><div class="netlogo netlogo--mtn">M</div>MTN MoMo</div></td><td>🇧🇯 BJ</td><td><span class="agg agg--pawapay">PawaPay</span></td><td class="num mono">2,20%</td><td class="num mono text-success">0,50%</td><td class="num mono font-semibold">2,70%</td><td class="num mono">100</td><td class="num mono">2M</td><td><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
-          <tr><td><div class="cell-network"><div class="netlogo netlogo--moov">M</div>Moov Money</div></td><td>🇧🇯 BJ</td><td><span class="agg agg--feexpay">FeexPay</span></td><td class="num mono">1,90%</td><td class="num mono text-success">0,50%</td><td class="num mono font-semibold">2,40%</td><td class="num mono">100</td><td class="num mono">2M</td><td><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
-          <tr><td><div class="cell-network"><div class="netlogo netlogo--wave">W</div>Wave</div></td><td>🇨🇮 CI</td><td><span class="agg agg--hub2">Hub2</span></td><td class="num mono">1,70%</td><td class="num mono text-success">0,50%</td><td class="num mono font-semibold">2,20%</td><td class="num mono">100</td><td class="num mono">1,5M</td><td><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
-          <tr><td><div class="cell-network"><div class="netlogo netlogo--orange">O</div>Orange Money</div></td><td>🇸🇳 SN</td><td><span class="agg agg--hub2">Hub2</span></td><td class="num mono">2,10%</td><td class="num mono text-success">0,50%</td><td class="num mono font-semibold">2,60%</td><td class="num mono">100</td><td class="num mono">2M</td><td><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
-          <tr><td><div class="cell-network"><div class="netlogo netlogo--mpesa">M</div>M-Pesa</div></td><td>🇰🇪 KE</td><td><span class="agg agg--pawapay">PawaPay</span></td><td class="num mono">1,50%</td><td class="num mono text-success">0,60%</td><td class="num mono font-semibold">2,10%</td><td class="num mono">10</td><td class="num mono">300k</td><td><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
-          <tr><td><div class="cell-network"><div class="netlogo netlogo--usdt">U</div>USDT TRC20</div></td><td>🌐 Crypto</td><td><span class="agg agg--nowpayments">NowPayments</span></td><td class="num mono">0,50%</td><td class="num mono text-success">1,00%</td><td class="num mono font-semibold">1,50%</td><td class="num mono">1</td><td class="num mono">100k</td><td><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
-        </tbody>
-      </table>
+    </div>
+
+    <!-- PANEL: Tarifs marchands -->
+    <div class="tp-panel" data-tp-panel="marchands" style="display:none">
+      <div class="card" style="padding:0">
+        <div class="card__header" style="padding:20px 24px;margin:0">
+          <div><h3 class="card__title">Tarifs personnalisés par marchand</h3><p class="card__sub">Surcharge le plan par défaut pour un marchand donné</p></div>
+          <button class="btn btn--primary btn--sm">+ Tarif personnalisé</button>
+        </div>
+        <table class="table">
+          <thead><tr><th>Marchand</th><th>Plan</th><th class="num">Taux appliqué</th><th class="num">Volume 30j</th><th>Surcharge</th><th class="text-right">Action</th></tr></thead>
+          <tbody>
+            <tr><td><div class="cell-merchant"><div class="av av--xs av-1">MB</div>Ma Boutique CI</div></td><td><span class="tag" style="background:var(--info-bg);color:var(--info-text);border-color:rgba(59,130,246,0.2)">Business</span></td><td class="num mono">1,90%</td><td class="num mono">42,6M XOF</td><td><span class="text-secondary fs-13">Plan standard</span></td><td class="text-right"><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
+            <tr><td><div class="cell-merchant"><div class="av av--xs av-4">NX</div>Naïja Xpress</div></td><td><span class="tag" style="background:var(--success-bg);color:var(--success-text);border-color:rgba(34,197,94,0.2)">Enterprise</span></td><td class="num mono">1,20%</td><td class="num mono">38,4M NGN</td><td><span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>Négocié</span></td><td class="text-right"><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
+            <tr><td><div class="cell-merchant"><div class="av av--xs av-2">AS</div>Akwaba Store</div></td><td><span class="tag" style="background:var(--info-bg);color:var(--info-text);border-color:rgba(59,130,246,0.2)">Business</span></td><td class="num mono">1,90%</td><td class="num mono">28,2M XOF</td><td><span class="text-secondary fs-13">Plan standard</span></td><td class="text-right"><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
+            <tr><td><div class="cell-merchant"><div class="av av--xs av-2">CF</div>Cotonou Fashion</div></td><td><span class="tag badge-st--neutral">Starter</span></td><td class="num mono">2,90%</td><td class="num mono">12,8M XOF</td><td><span class="text-secondary fs-13">Plan standard</span></td><td class="text-right"><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
+            <tr><td><div class="cell-merchant"><div class="av av--xs av-5">KT</div>Kigali Tech Hub</div></td><td><span class="tag" style="background:var(--success-bg);color:var(--success-text);border-color:rgba(34,197,94,0.2)">Enterprise</span></td><td class="num mono">0,90%</td><td class="num mono">4,2M KES</td><td><span class="badge-st badge-st--success" style="height:18px"><span class="badge-st__dot"></span>Négocié</span></td><td class="text-right"><button class="btn btn--ghost btn--xs">Éditer</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PANEL: Frais agrégateurs -->
+    <div class="tp-panel" data-tp-panel="agreg" style="display:none">
+      <div class="card" style="padding:0">
+        <div class="card__header" style="padding:20px 24px;margin:0">
+          <div><h3 class="card__title">Frais facturés par les agrégateurs</h3><p class="card__sub">Coût d'acquisition — base de calcul du markup</p></div>
+        </div>
+        <table class="table">
+          <thead><tr><th>Agrégateur</th><th>Périmètre</th><th class="num">Frais collecte</th><th class="num">Frais payout</th><th class="num">Frais fixe</th><th>Facturation</th></tr></thead>
+          <tbody>
+            <tr><td><span class="agg agg--pawapay">PawaPay</span></td><td class="text-secondary">20 pays · MoMo</td><td class="num mono">1,50% – 2,20%</td><td class="num mono">0,50%</td><td class="num mono">—</td><td class="text-secondary fs-13">Mensuelle · prélèvement</td></tr>
+            <tr><td><span class="agg agg--hub2">Hub2</span></td><td class="text-secondary">14 pays · MoMo + cartes</td><td class="num mono">1,70% – 2,10%</td><td class="num mono">0,60%</td><td class="num mono">—</td><td class="text-secondary fs-13">Mensuelle · prélèvement</td></tr>
+            <tr><td><span class="agg agg--feexpay">FeexPay</span></td><td class="text-secondary">8 pays · MoMo</td><td class="num mono">1,90% – 2,30%</td><td class="num mono">0,70%</td><td class="num mono">—</td><td class="text-secondary fs-13">Par transaction</td></tr>
+            <tr><td><span class="agg agg--nowpayments">NowPayments</span></td><td class="text-secondary">Crypto · 220+ devises</td><td class="num mono">0,50%</td><td class="num mono">1,00%</td><td class="num mono">network fee</td><td class="text-secondary fs-13">Par transaction</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </main>
 </div>
+<script>
+function tpShow(e, id) {
+  document.querySelectorAll('.tp-panel').forEach(p => p.style.display = p.dataset.tpPanel === id ? '' : 'none');
+  document.querySelectorAll('.tab[data-tp]').forEach(t => t.classList.toggle('tab--active', t.dataset.tp === id));
+}
+</script>
 <script>/* WouraPay shared shell — renders sidebar + topbar from data attrs */
 (function () {
   const I = {
